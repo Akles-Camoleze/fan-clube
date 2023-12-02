@@ -17,7 +17,7 @@ public class CidadeRepository implements BaseRepository<Cidade> {
     }
 
     @Override
-    public void save() {
+    public void save(Cidade entity) {
 
     }
 }

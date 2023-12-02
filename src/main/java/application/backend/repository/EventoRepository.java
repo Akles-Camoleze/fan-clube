@@ -17,7 +17,7 @@ public class EventoRepository implements BaseRepository<Evento> {
     }
 
     @Override
-    public void save() {
+    public void save(Evento entity) {
 
     }
 }

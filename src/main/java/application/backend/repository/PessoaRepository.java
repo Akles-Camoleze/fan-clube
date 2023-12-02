@@ -17,7 +17,7 @@ public class PessoaRepository implements BaseRepository<Pessoa> {
     }
 
     @Override
-    public void save() {
+    public void save(Pessoa entity) {
 
     }
 }

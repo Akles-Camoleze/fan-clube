@@ -17,7 +17,8 @@ public class UsuarioRepository implements BaseRepository<Usuario> {
     }
 
     @Override
-    public void save() {
+    public void save(Usuario entity) {
 
     }
+
 }

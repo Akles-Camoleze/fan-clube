@@ -17,7 +17,8 @@ public class InscricaoRepository implements BaseRepository<Inscricao> {
     }
 
     @Override
-    public void save() {
+    public void save(Inscricao entity) {
 
     }
+
 }

@@ -18,7 +18,8 @@ public class TipoUsuarioRepository implements BaseRepository<TipoUsuario> {
     }
 
     @Override
-    public void save() {
+    public void save(TipoUsuario entity) {
 
     }
+
 }

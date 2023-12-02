@@ -18,7 +18,8 @@ public class EnderecoRepository implements BaseRepository<Endereco> {
     }
 
     @Override
-    public void save() {
+    public void save(Endereco entity) {
 
     }
+
 }

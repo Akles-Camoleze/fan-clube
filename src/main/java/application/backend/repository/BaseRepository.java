@@ -7,5 +7,5 @@ public interface BaseRepository<T> {
 
     T[] get();
 
-    void save();
+    void save(T entity);
 }

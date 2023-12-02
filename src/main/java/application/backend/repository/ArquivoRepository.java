@@ -17,7 +17,7 @@ public class ArquivoRepository implements BaseRepository<Arquivo> {
     }
 
     @Override
-    public void save() {
+    public void save(Arquivo entity) {
 
     }
 }

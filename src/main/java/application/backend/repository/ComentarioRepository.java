@@ -17,7 +17,8 @@ public class ComentarioRepository implements BaseRepository<Comentario> {
     }
 
     @Override
-    public void save() {
+    public void save(Comentario entity) {
 
     }
+
 }
