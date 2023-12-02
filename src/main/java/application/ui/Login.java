@@ -34,6 +34,7 @@ public class Login extends javax.swing.JFrame {
         imagePanel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 91, 162));
 
@@ -95,8 +96,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        imagePanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/application/ui/assets/torcida (1).png"))); // NOI18N
-        imagePanel.setText("jLabel1");
+        imagePanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/torcida.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
