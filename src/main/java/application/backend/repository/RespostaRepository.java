@@ -2,6 +2,9 @@ package application.backend.repository;
 
 import application.backend.entities.Resposta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RespostaRepository implements BaseRepository<Resposta> {
     public RespostaRepository() {
     }
@@ -12,8 +15,8 @@ public class RespostaRepository implements BaseRepository<Resposta> {
     }
 
     @Override
-    public Resposta[] get() {
-        return new Resposta[0];
+    public List<Resposta> get() {
+        return new ArrayList<>();
     }
 
     @Override

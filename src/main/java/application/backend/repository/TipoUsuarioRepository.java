@@ -2,6 +2,9 @@ package application.backend.repository;
 
 import application.backend.entities.TipoUsuario;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TipoUsuarioRepository implements BaseRepository<TipoUsuario> {
 
     public TipoUsuarioRepository() {
@@ -13,8 +16,8 @@ public class TipoUsuarioRepository implements BaseRepository<TipoUsuario> {
     }
 
     @Override
-    public TipoUsuario[] get() {
-        return new TipoUsuario[0];
+    public List<TipoUsuario> get() {
+        return new ArrayList<>();
     }
 
     @Override

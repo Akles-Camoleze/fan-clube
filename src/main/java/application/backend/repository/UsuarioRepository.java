@@ -2,6 +2,9 @@ package application.backend.repository;
 
 import application.backend.entities.Usuario;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UsuarioRepository implements BaseRepository<Usuario> {
     public UsuarioRepository() {
     }
@@ -12,8 +15,8 @@ public class UsuarioRepository implements BaseRepository<Usuario> {
     }
 
     @Override
-    public Usuario[] get() {
-        return new Usuario[0];
+    public List<Usuario> get() {
+        return new ArrayList<>();
     }
 
     @Override

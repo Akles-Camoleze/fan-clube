@@ -2,6 +2,9 @@ package application.backend.repository;
 
 import application.backend.entities.Endereco;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EnderecoRepository implements BaseRepository<Endereco> {
 
     public EnderecoRepository() {
@@ -13,8 +16,8 @@ public class EnderecoRepository implements BaseRepository<Endereco> {
     }
 
     @Override
-    public Endereco[] get() {
-        return new Endereco[0];
+    public List<Endereco> get() {
+        return new ArrayList<>();
     }
 
     @Override

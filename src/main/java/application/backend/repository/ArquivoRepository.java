@@ -1,6 +1,9 @@
 package application.backend.repository;
 
 import application.backend.entities.Arquivo;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArquivoRepository implements BaseRepository<Arquivo> {
     public ArquivoRepository() {
@@ -8,16 +11,23 @@ public class ArquivoRepository implements BaseRepository<Arquivo> {
 
     @Override
     public Arquivo get(Integer id) {
-        return null;
+        return performOperation(connection -> {
+            System.out.println(connection);
+            return new Arquivo();
+        });
     }
 
     @Override
-    public Arquivo[] get() {
-        return new Arquivo[0];
+    public List<Arquivo> get() {
+        return performOperation(connection -> {
+            System.out.println(connection);
+            return new ArrayList<>();
+        });
     }
 
     @Override
     public void save(Arquivo entity) {
-
+        performOperation((Connection connection) -> {});
     }
+
 }

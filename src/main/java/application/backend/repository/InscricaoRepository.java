@@ -2,6 +2,9 @@ package application.backend.repository;
 
 import application.backend.entities.Inscricao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InscricaoRepository implements BaseRepository<Inscricao> {
     public InscricaoRepository() {
     }
@@ -12,8 +15,8 @@ public class InscricaoRepository implements BaseRepository<Inscricao> {
     }
 
     @Override
-    public Inscricao[] get() {
-        return new Inscricao[0];
+    public List<Inscricao> get() {
+        return new ArrayList<>();
     }
 
     @Override

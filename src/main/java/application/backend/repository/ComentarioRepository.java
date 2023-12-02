@@ -2,6 +2,9 @@ package application.backend.repository;
 
 import application.backend.entities.Comentario;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ComentarioRepository implements BaseRepository<Comentario> {
     public ComentarioRepository() {
     }
@@ -12,8 +15,8 @@ public class ComentarioRepository implements BaseRepository<Comentario> {
     }
 
     @Override
-    public Comentario[] get() {
-        return new Comentario[0];
+    public List<Comentario> get() {
+        return new ArrayList<>();
     }
 
     @Override
