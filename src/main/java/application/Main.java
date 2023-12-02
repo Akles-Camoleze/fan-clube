@@ -1,10 +1,11 @@
 package application;
 
-import application.database.DataBase;
 import application.database.Migration;
+import application.database.Seeder;
 
 public class Main {
     public static void main(String[] args) {
-        Migration.connectDatabase();
+        Migration.initDatabase();
+        Seeder.run();
     }
 }
