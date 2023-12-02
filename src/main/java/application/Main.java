@@ -3,6 +3,7 @@ package application;
 import application.database.Migration;
 import application.database.Seeder;
 import application.ui.Login;
+import application.ui.Register;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,7 +11,7 @@ public class Main {
         Seeder.run();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new Register().setVisible(true);
             }
         });
     }
