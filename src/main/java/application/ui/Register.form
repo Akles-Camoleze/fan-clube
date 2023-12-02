@@ -193,6 +193,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="registerButton">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="a2" green="5b" red="0" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Cadatrar-se"/>
               </Properties>
               <Events>
@@ -239,7 +242,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="E-mail"/>
+                <Property name="text" type="java.lang.String" value="Email"/>
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="emailFieldFocusGained"/>
@@ -270,6 +273,7 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
                 </Property>
+                <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="passwordField">

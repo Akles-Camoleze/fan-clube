@@ -5,6 +5,9 @@
 
 package application.ui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author akles
@@ -25,106 +28,97 @@ public class PersonalData extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        menuPopup = new javax.swing.JPopupMenu();
+        personalDataItem = new javax.swing.JMenuItem();
+        registerAdmItem = new javax.swing.JMenuItem();
+        exitItem = new javax.swing.JMenuItem();
+        pagePanel = new javax.swing.JPanel();
+        headerPanel = new javax.swing.JPanel();
+        titleLabel = new javax.swing.JLabel();
+        homeButton = new javax.swing.JButton();
+        menuButton = new javax.swing.JButton();
         emailField = new javax.swing.JTextField();
-        emailField1 = new javax.swing.JTextField();
-        emailField2 = new javax.swing.JTextField();
-        emailField3 = new javax.swing.JTextField();
+        dateField = new javax.swing.JTextField();
+        nameField = new javax.swing.JTextField();
+        phoneField = new javax.swing.JTextField();
+        editButton = new javax.swing.JButton();
+        pageTitleLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+
+        menuPopup.setForeground(new java.awt.Color(0, 91, 162));
+        menuPopup.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 91, 162)));
+
+        personalDataItem.setForeground(new java.awt.Color(0, 91, 162));
+        personalDataItem.setText("Dados Pessoais");
+        menuPopup.add(personalDataItem);
+
+        registerAdmItem.setForeground(new java.awt.Color(0, 91, 162));
+        registerAdmItem.setText("Cadastrar Adm.");
+        menuPopup.add(registerAdmItem);
+
+        exitItem.setForeground(new java.awt.Color(0, 91, 162));
+        exitItem.setText("Sair");
+        menuPopup.add(exitItem);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(707, 447));
         setPreferredSize(new java.awt.Dimension(707, 447));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        pagePanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 91, 162)));
+        headerPanel.setBackground(new java.awt.Color(0, 91, 162));
 
-        jButton3.setForeground(new java.awt.Color(0, 91, 162));
-        jButton3.setText("DadosPessoais");
-        jButton3.setBorder(null);
+        titleLabel.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 255, 255));
+        titleLabel.setText("Azul Celeste");
 
-        jButton4.setForeground(new java.awt.Color(0, 91, 162));
-        jButton4.setText("Cadastrar Adm.");
-        jButton4.setBorder(null);
+        homeButton.setBackground(new java.awt.Color(0, 91, 162));
+        homeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cruzeiro_do_sul.png"))); // NOI18N
+        homeButton.setBorder(null);
+        homeButton.setContentAreaFilled(false);
 
-        jButton5.setForeground(new java.awt.Color(0, 91, 162));
-        jButton5.setText("Sair");
-        jButton5.setBorder(null);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        menuButton.setBackground(new java.awt.Color(0, 91, 162));
+        menuButton.setForeground(new java.awt.Color(255, 255, 255));
+        menuButton.setText("☰");
+        menuButton.setActionCommand("menu");
+        menuButton.setBorder(null);
+        menuButton.setContentAreaFilled(false);
+        menuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                menuButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
+        headerPanel.setLayout(headerPanelLayout);
+        headerPanelLayout.setHorizontalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(homeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(titleLabel)
+                .addGap(229, 229, 229)
+                .addComponent(menuButton)
+                .addGap(19, 19, 19))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBackground(new java.awt.Color(0, 91, 162));
-
-        jPanel3.setBackground(new java.awt.Color(0, 91, 162));
-
-        jButton2.setBackground(new java.awt.Color(0, 91, 162));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("☰");
-        jButton2.setActionCommand("menu");
-        jButton2.setBorder(null);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jButton2)
-                .addGap(0, 21, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        headerPanelLayout.setVerticalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(homeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(headerPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(titleLabel)))
+                .addGap(12, 12, 12))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
+                .addComponent(menuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         emailField.setEditable(false);
+        emailField.setBackground(new java.awt.Color(240, 240, 240));
         emailField.setForeground(new java.awt.Color(0, 91, 162));
         emailField.setText("Email");
         emailField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 91, 162)));
@@ -134,99 +128,112 @@ public class PersonalData extends javax.swing.JFrame {
             }
         });
 
-        emailField1.setEditable(false);
-        emailField1.setForeground(new java.awt.Color(0, 91, 162));
-        emailField1.setText("Email");
-        emailField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 91, 162)));
-        emailField1.addActionListener(new java.awt.event.ActionListener() {
+        dateField.setEditable(false);
+        dateField.setBackground(new java.awt.Color(240, 240, 240));
+        dateField.setForeground(new java.awt.Color(0, 91, 162));
+        dateField.setText("Phone");
+        dateField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 91, 162)));
+        dateField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailField1ActionPerformed(evt);
+                dateFieldActionPerformed(evt);
             }
         });
 
-        emailField2.setEditable(false);
-        emailField2.setForeground(new java.awt.Color(0, 91, 162));
-        emailField2.setText("Email");
-        emailField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 91, 162)));
-        emailField2.addActionListener(new java.awt.event.ActionListener() {
+        nameField.setEditable(false);
+        nameField.setBackground(new java.awt.Color(240, 240, 240));
+        nameField.setForeground(new java.awt.Color(0, 91, 162));
+        nameField.setText("Nome");
+        nameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 91, 162)));
+        nameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailField2ActionPerformed(evt);
+                nameFieldActionPerformed(evt);
             }
         });
 
-        emailField3.setEditable(false);
-        emailField3.setForeground(new java.awt.Color(0, 91, 162));
-        emailField3.setText("Email");
-        emailField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 91, 162)));
-        emailField3.addActionListener(new java.awt.event.ActionListener() {
+        phoneField.setEditable(false);
+        phoneField.setBackground(new java.awt.Color(240, 240, 240));
+        phoneField.setForeground(new java.awt.Color(0, 91, 162));
+        phoneField.setText("Date");
+        phoneField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 91, 162)));
+        phoneField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailField3ActionPerformed(evt);
+                phoneFieldActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 91, 162));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Alterar Dados");
+        editButton.setBackground(new java.awt.Color(0, 91, 162));
+        editButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        editButton.setForeground(new java.awt.Color(255, 255, 255));
+        editButton.setText("Alterar Dados");
 
-        jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 91, 162));
-        jLabel1.setText("Dados Pessoais");
+        pageTitleLabel.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        pageTitleLabel.setForeground(new java.awt.Color(0, 91, 162));
+        pageTitleLabel.setText("Dados Pessoais");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 91, 162));
+        jButton1.setText("Salvar");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 91, 162)));
+        jButton1.setContentAreaFilled(false);
+
+        javax.swing.GroupLayout pagePanelLayout = new javax.swing.GroupLayout(pagePanel);
+        pagePanel.setLayout(pagePanelLayout);
+        pagePanelLayout.setHorizontalGroup(
+            pagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pagePanelLayout.createSequentialGroup()
                 .addContainerGap(104, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(emailField2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(pagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pagePanelLayout.createSequentialGroup()
                             .addGap(174, 174, 174)
-                            .addComponent(jLabel1)
-                            .addGap(120, 120, 120)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(emailField3, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(emailField1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(94, 94, 94))
-                        .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(226, 226, 226))))
+                            .addComponent(pageTitleLabel))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pagePanelLayout.createSequentialGroup()
+                            .addGroup(pagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(83, 83, 83)
+                            .addGroup(pagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(94, 94, 94)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pagePanelLayout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(292, 292, 292))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pagePanelLayout.createSequentialGroup()
+                        .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(225, 225, 225))))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        pagePanelLayout.setVerticalGroup(
+            pagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pagePanelLayout.createSequentialGroup()
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(pageTitleLabel)
+                .addGap(18, 18, 18)
+                .addGroup(pagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(pagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 55, Short.MAX_VALUE))
+                    .addComponent(phoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 96, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -236,21 +243,22 @@ public class PersonalData extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailFieldActionPerformed
 
-    private void emailField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailField1ActionPerformed
+    private void dateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailField1ActionPerformed
+    }//GEN-LAST:event_dateFieldActionPerformed
 
-    private void emailField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailField2ActionPerformed
+    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailField2ActionPerformed
+    }//GEN-LAST:event_nameFieldActionPerformed
 
-    private void emailField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailField3ActionPerformed
+    private void phoneFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailField3ActionPerformed
+    }//GEN-LAST:event_phoneFieldActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
+        menuPopup.show(menuButton, -91, menuButton.getHeight());
+    }//GEN-LAST:event_menuButtonActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -259,7 +267,7 @@ public class PersonalData extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -289,20 +297,22 @@ public class PersonalData extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField dateField;
+    private javax.swing.JButton editButton;
     private javax.swing.JTextField emailField;
-    private javax.swing.JTextField emailField1;
-    private javax.swing.JTextField emailField2;
-    private javax.swing.JTextField emailField3;
+    private javax.swing.JMenuItem exitItem;
+    private javax.swing.JPanel headerPanel;
+    private javax.swing.JButton homeButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JButton menuButton;
+    private javax.swing.JPopupMenu menuPopup;
+    private javax.swing.JTextField nameField;
+    private javax.swing.JPanel pagePanel;
+    private javax.swing.JLabel pageTitleLabel;
+    private javax.swing.JMenuItem personalDataItem;
+    private javax.swing.JTextField phoneField;
+    private javax.swing.JMenuItem registerAdmItem;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 
 }

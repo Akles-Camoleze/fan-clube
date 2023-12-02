@@ -34,9 +34,9 @@ public class Login extends javax.swing.JFrame {
     }
     public void removePlaceHolderStyle(JTextField textField){
         Font font = textField.getFont();
-        font = font.deriveFont(Font.PLAIN|Font.BOLD);
+        font = font.deriveFont(Font.PLAIN);
         textField.setFont(font);
-        textField.setForeground(Color.black);
+        textField.setForeground(Color.white);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -49,6 +49,9 @@ public class Login extends javax.swing.JFrame {
         entryButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        titleLabel = new javax.swing.JLabel();
         imagePanel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,6 +87,7 @@ public class Login extends javax.swing.JFrame {
         loginLabel.setForeground(new java.awt.Color(255, 255, 255));
         loginLabel.setText("Login");
 
+        entryButton.setForeground(new java.awt.Color(0, 91, 162));
         entryButton.setText("Entrar");
         entryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +115,24 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Não possui uma conta?");
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Cadastre-se");
+        jButton1.setBorder(null);
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        titleLabel.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 255, 255));
+        titleLabel.setText("Azul Celeste");
+
         javax.swing.GroupLayout backgroundPanelLayout = new javax.swing.GroupLayout(backgroundPanel);
         backgroundPanel.setLayout(backgroundPanelLayout);
         backgroundPanelLayout.setHorizontalGroup(
@@ -118,23 +140,35 @@ public class Login extends javax.swing.JFrame {
             .addGroup(backgroundPanelLayout.createSequentialGroup()
                 .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
-                        .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(loginLabel)
-                            .addComponent(emailField)
-                            .addComponent(entryButton, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                            .addComponent(passwordField))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(backgroundPanelLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1))
+                            .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(loginLabel)
+                                .addComponent(emailField)
+                                .addComponent(entryButton, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                                .addComponent(passwordField))))
+                    .addGroup(backgroundPanelLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(titleLabel)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         backgroundPanelLayout.setVerticalGroup(
             backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(53, 53, 53)
+                .addGap(24, 24, 24)
+                .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(backgroundPanelLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(titleLabel)))
+                .addGap(35, 35, 35)
                 .addComponent(loginLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,6 +176,10 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(entryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -200,7 +238,7 @@ public class Login extends javax.swing.JFrame {
        if(passwordField.getText().equals("Senha")){
            passwordField.setText(null);
            passwordField.requestFocus();
-           passwordField.setEchoChar('@');
+           passwordField.setEchoChar('●');
            removePlaceHolderStyle(passwordField);
        }
     }//GEN-LAST:event_passwordFieldFocusGained
@@ -228,6 +266,10 @@ public class Login extends javax.swing.JFrame {
             removePlaceHolderStyle(emailField);
         }
     }//GEN-LAST:event_emailFieldFocusGained
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,10 +311,13 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField emailField;
     private javax.swing.JButton entryButton;
     private javax.swing.JLabel imagePanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 
 }

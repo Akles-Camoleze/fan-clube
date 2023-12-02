@@ -39,9 +39,9 @@ public class Register extends javax.swing.JFrame {
     }
     public void removePlaceHolderStyle(JTextField textField){
         Font font = textField.getFont();
-        font = font.deriveFont(Font.PLAIN|Font.BOLD);
+        font = font.deriveFont(Font.PLAIN);
         textField.setFont(font);
-        textField.setForeground(Color.black);
+        textField.setForeground(Color.white);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -103,6 +103,7 @@ public class Register extends javax.swing.JFrame {
         registerLabel.setForeground(new java.awt.Color(255, 255, 255));
         registerLabel.setText("Cadastro");
 
+        registerButton.setForeground(new java.awt.Color(0, 91, 162));
         registerButton.setText("Cadatrar-se");
         registerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,7 +147,7 @@ public class Register extends javax.swing.JFrame {
 
         emailField.setBackground(new java.awt.Color(0, 91, 162));
         emailField.setForeground(new java.awt.Color(255, 255, 255));
-        emailField.setText("E-mail");
+        emailField.setText("Email");
         emailField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 emailFieldFocusGained(evt);
@@ -169,6 +170,7 @@ public class Register extends javax.swing.JFrame {
         entryButton.setForeground(new java.awt.Color(255, 255, 255));
         entryButton.setText("Entrar");
         entryButton.setBorder(null);
+        entryButton.setContentAreaFilled(false);
 
         passwordField.setBackground(new java.awt.Color(0, 91, 162));
         passwordField.setForeground(new java.awt.Color(255, 255, 255));
@@ -336,7 +338,7 @@ public class Register extends javax.swing.JFrame {
         if(passwordField.getText().equals("Senha")){
            passwordField.setText(null);
            passwordField.requestFocus();
-           passwordField.setEchoChar('@');
+           passwordField.setEchoChar('●');
            removePlaceHolderStyle(passwordField);
        }        
     }//GEN-LAST:event_passwordFieldFocusGained
@@ -345,7 +347,7 @@ public class Register extends javax.swing.JFrame {
         if(confirmField.getText().equals("Confirmar")){
            confirmField.setText(null);
            confirmField.requestFocus();
-           confirmField.setEchoChar('@');
+           confirmField.setEchoChar('●');
            removePlaceHolderStyle(confirmField);
        }        
     }//GEN-LAST:event_confirmFieldFocusGained
