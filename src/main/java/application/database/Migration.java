@@ -111,7 +111,7 @@ public class Migration {
                         "  `idEndereco` INT NOT NULL," +
                         "  `idArquivo` INT," +
                         "  `capacidade` INT UNSIGNED NOT NULL," +
-                        "  `valor` DECIMAL UNSIGNED NOT NULL," +
+                        "  `valor` DECIMAL(10, 2) UNSIGNED NOT NULL," +
                         "  PRIMARY KEY (`id`)," +
                         "  INDEX `fk_evento_endereco1_idx` (`idEndereco` ASC) VISIBLE," +
                         "  INDEX `fk_evento_arquivo1_idx` (`idArquivo` ASC) VISIBLE," +

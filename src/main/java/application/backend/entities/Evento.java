@@ -1,5 +1,6 @@
 package application.backend.entities;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Evento extends BaseEntity {
@@ -9,12 +10,12 @@ public class Evento extends BaseEntity {
     private Endereco endereco;
     private Arquivo arquivo;
     private Integer capacidade;
-    private Double valor;
+    private BigDecimal valor;
 
     public Evento() {
     }
 
-    public Evento(String nome, Date data, String descricao, Endereco endereco, Arquivo arquivo, Integer capacidade, Double valor) {
+    public Evento(String nome, Date data, String descricao, Endereco endereco, Arquivo arquivo, Integer capacidade, BigDecimal valor) {
         this.nome = nome;
         this.data = data;
         this.descricao = descricao;
@@ -24,7 +25,7 @@ public class Evento extends BaseEntity {
         this.valor = valor;
     }
 
-    public Evento(Integer id, String nome, Date data, String descricao, Endereco endereco, Arquivo arquivo, Integer capacidade, Double valor) {
+    public Evento(Integer id, String nome, Date data, String descricao, Endereco endereco, Arquivo arquivo, Integer capacidade, BigDecimal valor) {
         super(id);
         this.nome = nome;
         this.data = data;
@@ -59,7 +60,7 @@ public class Evento extends BaseEntity {
         return capacidade;
     }
 
-    public Double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
@@ -87,7 +88,21 @@ public class Evento extends BaseEntity {
         this.capacidade = capacidade;
     }
 
-    public void setValor(Double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
+    }
+
+    @Override
+    public String toString() {
+        return "Evento{" +
+                "nome='" + nome + '\'' +
+                ", data=" + data +
+                ", descricao='" + descricao + '\'' +
+                ", endereco=" + endereco +
+                ", arquivo=" + arquivo +
+                ", capacidade=" + capacidade +
+                ", valor=" + valor +
+                ", id=" + id +
+                '}';
     }
 }

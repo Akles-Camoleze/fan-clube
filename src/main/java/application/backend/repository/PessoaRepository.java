@@ -44,6 +44,7 @@ public class PessoaRepository implements BaseRepository<Pessoa> {
 
                 Endereco endereco = new Endereco();
                 endereco.setId(result.getInt("idEndereco"));
+                endereco.setIdCidade(result.getInt("idCidade"));
                 endereco.setNumero(result.getInt("numero"));
                 endereco.setRua(result.getString("rua"));
                 endereco.setBairro(result.getString("bairro"));

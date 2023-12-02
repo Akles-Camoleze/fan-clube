@@ -5,6 +5,7 @@ public class Endereco extends BaseEntity {
     private Integer numero;
     private String bairro;
     private Cidade cidade;
+    private Integer idCidade;
 
     public Endereco() {
     }
@@ -54,6 +55,14 @@ public class Endereco extends BaseEntity {
 
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
+    }
+
+    public Integer getIdCidade() {
+        return idCidade;
+    }
+
+    public void setIdCidade(Integer idCidade) {
+        this.idCidade = idCidade;
     }
 
     @Override
