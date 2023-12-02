@@ -11,12 +11,12 @@ public class TipoUsuarioRepository implements BaseRepository<TipoUsuario> {
     }
 
     @Override
-    public TipoUsuario get(Integer id) {
+    public TipoUsuario find(Integer id) {
         return null;
     }
 
     @Override
-    public List<TipoUsuario> get() {
+    public List<TipoUsuario> findAll() {
         return new ArrayList<>();
     }
 

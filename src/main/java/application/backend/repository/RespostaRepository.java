@@ -10,12 +10,12 @@ public class RespostaRepository implements BaseRepository<Resposta> {
     }
 
     @Override
-    public Resposta get(Integer id) {
+    public Resposta find(Integer id) {
         return null;
     }
 
     @Override
-    public List<Resposta> get() {
+    public List<Resposta> findAll() {
         return new ArrayList<>();
     }
 

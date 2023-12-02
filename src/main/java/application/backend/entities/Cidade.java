@@ -34,4 +34,12 @@ public class Cidade extends BaseEntity {
         this.uf = uf;
     }
 
+    @Override
+    public String toString() {
+        return "Cidade{" +
+                "nome='" + nome + '\'' +
+                ", uf='" + uf + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

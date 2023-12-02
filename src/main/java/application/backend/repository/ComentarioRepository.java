@@ -10,12 +10,12 @@ public class ComentarioRepository implements BaseRepository<Comentario> {
     }
 
     @Override
-    public Comentario get(Integer id) {
+    public Comentario find(Integer id) {
         return null;
     }
 
     @Override
-    public List<Comentario> get() {
+    public List<Comentario> findAll() {
         return new ArrayList<>();
     }
 

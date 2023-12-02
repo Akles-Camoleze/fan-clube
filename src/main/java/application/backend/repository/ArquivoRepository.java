@@ -10,7 +10,7 @@ public class ArquivoRepository implements BaseRepository<Arquivo> {
     }
 
     @Override
-    public Arquivo get(Integer id) {
+    public Arquivo find(Integer id) {
         return performOperation(connection -> {
             System.out.println(connection);
             return new Arquivo();
@@ -18,7 +18,7 @@ public class ArquivoRepository implements BaseRepository<Arquivo> {
     }
 
     @Override
-    public List<Arquivo> get() {
+    public List<Arquivo> findAll() {
         return performOperation(connection -> {
             System.out.println(connection);
             return new ArrayList<>();

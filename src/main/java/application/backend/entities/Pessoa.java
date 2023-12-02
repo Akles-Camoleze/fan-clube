@@ -7,6 +7,7 @@ public class Pessoa extends BaseEntity {
     private String sobrenome;
     private Date dataNascimento;
     private Endereco endereco;
+    private Integer idEndereco;
 
     public Pessoa() {
     }
@@ -56,5 +57,24 @@ public class Pessoa extends BaseEntity {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public Integer getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(Integer idEndereco) {
+        this.idEndereco = idEndereco;
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "nome='" + nome + '\'' +
+                ", sobrenome='" + sobrenome + '\'' +
+                ", dataNascimento=" + dataNascimento +
+                ", endereco=" + endereco +
+                ", id=" + id +
+                '}';
     }
 }

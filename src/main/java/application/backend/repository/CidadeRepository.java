@@ -10,12 +10,12 @@ public class CidadeRepository implements BaseRepository<Cidade> {
     }
 
     @Override
-    public Cidade get(Integer id) {
+    public Cidade find(Integer id) {
         return null;
     }
 
     @Override
-    public List<Cidade> get() {
+    public List<Cidade> findAll() {
         return new ArrayList<>();
     }
 

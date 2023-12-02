@@ -10,12 +10,12 @@ public class InscricaoRepository implements BaseRepository<Inscricao> {
     }
 
     @Override
-    public Inscricao get(Integer id) {
+    public Inscricao find(Integer id) {
         return null;
     }
 
     @Override
-    public List<Inscricao> get() {
+    public List<Inscricao> findAll() {
         return new ArrayList<>();
     }
 

@@ -1,18 +1,16 @@
 package application.backend.repository;
 
-import application.backend.entities.TipoUsuario;
 import application.database.DataBase;
 import application.database.DbException;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.function.Consumer;
 
 public interface BaseRepository<T> {
-    T get(Integer id);
+    T find(Integer id);
 
-    List<T> get();
+    List<T> findAll();
 
     void save(T entity);
 

@@ -10,12 +10,12 @@ public class EventoRepository implements BaseRepository<Evento> {
     }
 
     @Override
-    public Evento get(Integer id) {
+    public Evento find(Integer id) {
         return null;
     }
 
     @Override
-    public List<Evento> get() {
+    public List<Evento> findAll() {
         return new ArrayList<>();
     }
 

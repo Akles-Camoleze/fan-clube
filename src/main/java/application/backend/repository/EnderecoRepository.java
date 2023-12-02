@@ -11,12 +11,12 @@ public class EnderecoRepository implements BaseRepository<Endereco> {
     }
 
     @Override
-    public Endereco get(Integer id) {
+    public Endereco find(Integer id) {
         return null;
     }
 
     @Override
-    public List<Endereco> get() {
+    public List<Endereco> findAll() {
         return new ArrayList<>();
     }
 

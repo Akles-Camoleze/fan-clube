@@ -4,9 +4,10 @@ public class Usuario extends BaseEntity {
     private String nome;
     private String email;
     private String senha;
-
     private TipoUsuario tipoUsuario;
+    private Integer idTipoUsuario;
     private Pessoa pessoa;
+    private Integer idPessoa;
 
     public Usuario() {
     }
@@ -66,5 +67,33 @@ public class Usuario extends BaseEntity {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public Integer getIdTipoUsuario() {
+        return idTipoUsuario;
+    }
+
+    public void setIdTipoUsuario(Integer idTipoUsuario) {
+        this.idTipoUsuario = idTipoUsuario;
+    }
+
+    public Integer getIdPessoa() {
+        return idPessoa;
+    }
+
+    public void setIdPessoa(Integer idPessoa) {
+        this.idPessoa = idPessoa;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", tipoUsuario=" + tipoUsuario +
+                ", pessoa=" + pessoa +
+                ", id=" + id +
+                '}';
     }
 }

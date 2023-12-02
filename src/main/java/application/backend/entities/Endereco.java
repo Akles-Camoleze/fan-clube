@@ -55,4 +55,15 @@ public class Endereco extends BaseEntity {
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
+
+    @Override
+    public String toString() {
+        return "Endereco{" +
+                "rua='" + rua + '\'' +
+                ", numero=" + numero +
+                ", bairro='" + bairro + '\'' +
+                ", cidade=" + cidade +
+                ", id=" + id +
+                '}';
+    }
 }
