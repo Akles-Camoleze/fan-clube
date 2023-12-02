@@ -9,10 +9,6 @@ public class Main {
     public static void main(String[] args) {
         Migration.initDatabase();
         Seeder.run();
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Register().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(() -> new Register().setVisible(true));
     }
 }
