@@ -1,15 +1,11 @@
 package application.backend.repository;
 
-import application.backend.entities.Cidade;
-import application.backend.entities.Endereco;
+import application.backend.dto.DataTransferObject;
 import application.backend.entities.Pessoa;
-
+import java.lang.reflect.Constructor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class PessoaRepository implements BaseRepository<Pessoa> {
@@ -18,6 +14,11 @@ public class PessoaRepository implements BaseRepository<Pessoa> {
 
     @Override
     public Pessoa find(Integer id)  {
+        return null;
+    }
+
+    @Override
+    public <K extends DataTransferObject> K find(Integer id, Class<K> clazz) {
         return performOperation(connection -> {
             PreparedStatement st = connection.prepareStatement("""
                     SELECT
@@ -37,37 +38,21 @@ public class PessoaRepository implements BaseRepository<Pessoa> {
             ResultSet result = st.executeQuery();
 
             if (result.next()) {
-                Cidade cidade = new Cidade();
-                cidade.setId(result.getInt("idCidade"));
-                cidade.setNome(result.getString("nomeCidade"));
-                cidade.setUf(result.getString("uf"));
-
-                Endereco endereco = new Endereco();
-                endereco.setId(result.getInt("idEndereco"));
-                endereco.setIdCidade(result.getInt("idCidade"));
-                endereco.setNumero(result.getInt("numero"));
-                endereco.setRua(result.getString("rua"));
-                endereco.setBairro(result.getString("bairro"));
-                endereco.setCidade(cidade);
-
-                Pessoa pessoa = new Pessoa();
-                pessoa.setId(result.getInt("id"));
-                pessoa.setNome(result.getString("nome"));
-                pessoa.setSobrenome(result.getString("sobrenome"));
-                pessoa.setIdEndereco(result.getInt("idEndereco"));
-                pessoa.setEndereco(endereco);
-
                 try {
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    pessoa.setDataNascimento(sdf.parse(result.getString("dataNascimento")));
-                    return pessoa;
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                    Constructor<K> constructor = clazz.getDeclaredConstructor(ResultSet.class);
+                    return constructor.newInstance(result);
+                } catch (Exception e) {
+                    throw new RuntimeException(e.getMessage());
                 }
             }
 
             return null;
         });
+    }
+
+    @Override
+    public <K extends DataTransferObject> List<K> findAll(Class<K> clazz) {
+        return null;
     }
 
     @Override

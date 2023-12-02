@@ -1,5 +1,6 @@
 package application.backend.repository;
 
+import application.backend.dto.DataTransferObject;
 import application.backend.entities.Arquivo;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -15,6 +16,16 @@ public class ArquivoRepository implements BaseRepository<Arquivo> {
             System.out.println(connection);
             return new Arquivo();
         });
+    }
+
+    @Override
+    public <K extends DataTransferObject> K find(Integer id, Class<K> clazz) {
+        return null;
+    }
+
+    @Override
+    public <K extends DataTransferObject> List<K> findAll(Class<K> clazz) {
+        return null;
     }
 
     @Override

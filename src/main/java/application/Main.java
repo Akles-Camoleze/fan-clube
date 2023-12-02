@@ -1,5 +1,6 @@
 package application;
 
+import application.backend.dto.EventoEnderecoCidadeDTO;
 import application.backend.entities.Evento;
 import application.backend.entities.Usuario;
 import application.backend.repository.EventoRepository;
@@ -20,8 +21,8 @@ public class Main {
             System.out.println(new PessoaRepository().find(usuario.getIdPessoa()));
         }
 
-        for (Evento evento : new EventoRepository().findAll()) {
-            System.out.println(evento);
+        for (EventoEnderecoCidadeDTO dto : new EventoRepository().findAll(EventoEnderecoCidadeDTO.class)) {
+            System.out.println(dto);
         }
     }
 }

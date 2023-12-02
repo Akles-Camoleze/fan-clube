@@ -1,6 +1,10 @@
 package application.backend.repository;
 
+import application.backend.dto.DataTransferObject;
+import application.backend.dto.EventoEnderecoCidadeDTO;
 import application.backend.entities.*;
+
+import java.lang.reflect.Constructor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.ParseException;
@@ -18,7 +22,12 @@ public class EventoRepository implements BaseRepository<Evento> {
     }
 
     @Override
-    public List<Evento> findAll() {
+    public <K extends DataTransferObject> K find(Integer id, Class<K> clazz) {
+        return null;
+    }
+
+    @Override
+    public <K extends DataTransferObject> List<K> findAll(Class<K> clazz) {
         return performOperation(connection -> {
             PreparedStatement st = connection.prepareStatement("""
                     SELECT
@@ -34,42 +43,24 @@ public class EventoRepository implements BaseRepository<Evento> {
                     JOIN `fan_club`.`cidade` as `cd` ON `cd`.`id` = `end`.`idCidade`"""
             );
             ResultSet result = st.executeQuery();
-            List<Evento> data = new ArrayList<>();
+            List<K> data = new ArrayList<>();
 
-            while (result.next()) {
-                Cidade cidade = new Cidade();
-                cidade.setId(result.getInt("idCidade"));
-                cidade.setNome(result.getString("nomeCidade"));
-                cidade.setUf(result.getString("uf"));
-
-                Endereco endereco = new Endereco();
-                endereco.setId(result.getInt("idEndereco"));
-                endereco.setIdCidade(result.getInt("idCidade"));
-                endereco.setNumero(result.getInt("numero"));
-                endereco.setRua(result.getString("rua"));
-                endereco.setBairro(result.getString("bairro"));
-                endereco.setCidade(cidade);
-
-                Evento evento = new Evento();
-                evento.setId(result.getInt("id"));
-                evento.setNome(result.getString("nome"));
-                evento.setEndereco(endereco);
-                evento.setCapacidade(result.getInt("capacidade"));
-                evento.setDescricao(result.getString("descricao"));
-                evento.setValor(result.getBigDecimal("valor"));
-
-                try {
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    evento.setData(sdf.parse(result.getString("data")));
-                    data.add(evento);
-                } catch (ParseException e) {
-                    e.printStackTrace();
+            try {
+                while (result.next()) {
+                    Constructor<K> constructor = clazz.getDeclaredConstructor(ResultSet.class);
+                    data.add(constructor.newInstance(result));
                 }
-
+            } catch (Exception e) {
+                throw new RuntimeException(e.getMessage());
             }
 
             return data;
         });
+    }
+
+    @Override
+    public List<Evento> findAll() {
+        return null;
     }
 
     @Override

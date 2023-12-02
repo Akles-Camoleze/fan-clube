@@ -1,5 +1,6 @@
 package application.backend.repository;
 
+import application.backend.dto.DataTransferObject;
 import application.database.DataBase;
 import application.database.DbException;
 import java.sql.Connection;
@@ -9,7 +10,9 @@ import java.util.function.Consumer;
 
 public interface BaseRepository<T> {
     T find(Integer id);
+    <K extends DataTransferObject> K find(Integer id, Class<K> clazz);
 
+    <K extends DataTransferObject> List<K> findAll(Class<K> clazz);
     List<T> findAll();
 
     void save(T entity);

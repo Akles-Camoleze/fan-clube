@@ -1,5 +1,6 @@
 package application.backend.repository;
 
+import application.backend.dto.DataTransferObject;
 import application.backend.entities.TipoUsuario;
 import application.backend.entities.Usuario;
 import java.sql.PreparedStatement;
@@ -13,6 +14,16 @@ public class UsuarioRepository implements BaseRepository<Usuario> {
 
     @Override
     public Usuario find(Integer id) {
+        return null;
+    }
+
+    @Override
+    public <K extends DataTransferObject> K find(Integer id, Class<K> clazz) {
+        return null;
+    }
+
+    @Override
+    public <K extends DataTransferObject> List<K> findAll(Class<K> clazz) {
         return null;
     }
 
