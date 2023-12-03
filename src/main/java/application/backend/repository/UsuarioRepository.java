@@ -3,6 +3,8 @@ package application.backend.repository;
 import application.backend.dto.DataTransferObject;
 import application.backend.entities.TipoUsuario;
 import application.backend.entities.Usuario;
+
+import java.lang.reflect.Constructor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class UsuarioRepository implements BaseRepository<Usuario> {
 
     }
 
-    public Usuario findByEmail(String email) {
+    public <K extends DataTransferObject> K findByEmail(String email, Class<K> clazz) {
         return performOperation(connection -> {
             PreparedStatement st = connection.prepareStatement("""
                     SELECT `usr`.*, `tp`.`nome` as `nomeTipoUsuario`
@@ -47,25 +49,7 @@ public class UsuarioRepository implements BaseRepository<Usuario> {
                     WHERE `usr`.`email` = ?;"""
             );
             st.setString(1, email);
-            ResultSet result = st.executeQuery();
-
-            if (result.next()) {
-                TipoUsuario tipoUsuario = new TipoUsuario();
-                tipoUsuario.setId(result.getInt("idTipoUsuario"));
-                tipoUsuario.setNome(result.getString("nomeTipoUsuario"));
-
-                Usuario usuario = new Usuario();
-                usuario.setTipoUsuario(tipoUsuario);
-                usuario.setId(result.getInt("id"));
-                usuario.setEmail(result.getString("email"));
-                usuario.setNome(result.getString("nome"));
-                usuario.setSenha(result.getString("senha"));
-                usuario.setIdTipoUsuario(result.getInt("idTipoUsuario"));
-                usuario.setIdPessoa(result.getInt("idPessoa"));
-
-                return usuario;
-            }
-            return null;
+            return runQuery(st, clazz);
         });
     }
 

@@ -38,7 +38,7 @@ public class PessoaEnderecoCidadeDTO implements DataTransferObject {
             this.nomePessoa = resultSet.getString("nome");
             this.sobrenomePessoa = resultSet.getString("sobrenome");
 
-            this.dataNascimento = DateParser.parseString(resultSet.getString("data"));
+            this.dataNascimento = DateParser.parseString(resultSet.getString("dataNascimento"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -115,6 +115,21 @@ public class PessoaEnderecoCidadeDTO implements DataTransferObject {
 
     public void setSobrenomePessoa(String sobrenomePessoa) {
         this.sobrenomePessoa = sobrenomePessoa;
+    }
+
+    @Override
+    public String toString() {
+        return "PessoaEnderecoCidadeDTO{" +
+                "idPessoa=" + idPessoa +
+                ", nomePessoa='" + nomePessoa + '\'' +
+                ", sobrenomePessoa='" + sobrenomePessoa + '\'' +
+                ", dataNascimento=" + dataNascimento +
+                ", bairroEndereco='" + bairroEndereco + '\'' +
+                ", nomeCidade='" + nomeCidade + '\'' +
+                ", ufCidade='" + ufCidade + '\'' +
+                ", ruaEndereco='" + ruaEndereco + '\'' +
+                ", numeroEndereco=" + numeroEndereco +
+                '}';
     }
 }
 

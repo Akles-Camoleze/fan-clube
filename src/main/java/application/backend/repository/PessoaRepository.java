@@ -35,18 +35,7 @@ public class PessoaRepository implements BaseRepository<Pessoa> {
                     WHERE `ps`.`id` = ?;"""
             );
             st.setInt(1, id);
-            ResultSet result = st.executeQuery();
-
-            if (result.next()) {
-                try {
-                    Constructor<K> constructor = clazz.getDeclaredConstructor(ResultSet.class);
-                    return constructor.newInstance(result);
-                } catch (Exception e) {
-                    throw new RuntimeException(e.getMessage());
-                }
-            }
-
-            return null;
+            return runQuery(st, clazz);
         });
     }
 

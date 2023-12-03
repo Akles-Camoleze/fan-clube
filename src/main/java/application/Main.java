@@ -1,6 +1,8 @@
 package application;
 
 import application.backend.dto.EventoEnderecoCidadeDTO;
+import application.backend.dto.PessoaEnderecoCidadeDTO;
+import application.backend.dto.UsuarioTipoDTO;
 import application.backend.entities.Evento;
 import application.backend.entities.Usuario;
 import application.backend.repository.EventoRepository;
@@ -13,12 +15,13 @@ import application.ui.Register;
 
 public class Main {
     public static void main(String[] args) {
-        Migration.initDatabase();
-        Seeder.run();
-        java.awt.EventQueue.invokeLater(() -> new Register().setVisible(true));
-        Usuario usuario = new UsuarioRepository().findByEmail("john@example.com");
-        if (usuario != null) {
-            System.out.println(new PessoaRepository().find(usuario.getIdPessoa()));
+//        Migration.initDatabase();
+//        Seeder.run();
+//        java.awt.EventQueue.invokeLater(() -> new Register().setVisible(true));
+        UsuarioTipoDTO usuarioDTO = new UsuarioRepository().findByEmail("john@example.com", UsuarioTipoDTO.class);
+        if (usuarioDTO != null) {
+            System.out.println(usuarioDTO);
+            System.out.println(new PessoaRepository().find(usuarioDTO.getIdPessoa(), PessoaEnderecoCidadeDTO.class));
         }
 
         for (EventoEnderecoCidadeDTO dto : new EventoRepository().findAll(EventoEnderecoCidadeDTO.class)) {
