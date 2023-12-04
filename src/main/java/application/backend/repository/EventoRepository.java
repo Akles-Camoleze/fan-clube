@@ -2,9 +2,7 @@ package application.backend.repository;
 
 import application.backend.dto.DataTransferObject;
 import application.backend.entities.*;
-import java.lang.reflect.Constructor;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 

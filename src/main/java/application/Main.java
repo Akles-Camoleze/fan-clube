@@ -15,9 +15,10 @@ import application.ui.Register;
 
 public class Main {
     public static void main(String[] args) {
-//        Migration.initDatabase();
-//        Seeder.run();
-//        java.awt.EventQueue.invokeLater(() -> new Register().setVisible(true));
+        // Migration.initDatabase();
+        // Seeder.run();
+        // java.awt.EventQueue.invokeLater(() -> new Register().setVisible(true));
+
         UsuarioTipoDTO usuarioDTO = new UsuarioRepository().findByEmail("john@example.com", UsuarioTipoDTO.class);
         if (usuarioDTO != null) {
             System.out.println(usuarioDTO);
