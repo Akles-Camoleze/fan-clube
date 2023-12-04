@@ -1,12 +1,13 @@
 package application.backend.dto;
 
+import application.backend.entities.Pessoa;
 import application.utils.DateParser;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-public class PessoaEnderecoCidadeDTO implements DataTransferObject {
+public class PessoaResponseDTO implements DataTransferObject {
     private Integer id;
     private String nome;
     private String sobrenome;
@@ -14,10 +15,10 @@ public class PessoaEnderecoCidadeDTO implements DataTransferObject {
     private String telefone;
     private EnderecoResponseDTO endereco;
 
-    public PessoaEnderecoCidadeDTO() {
+    public PessoaResponseDTO() {
     }
 
-    public PessoaEnderecoCidadeDTO(ResultSet resultSet) {
+    public PessoaResponseDTO(ResultSet resultSet) {
         toDTO(resultSet);
     }
 

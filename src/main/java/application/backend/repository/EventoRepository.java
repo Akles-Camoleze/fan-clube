@@ -40,7 +40,7 @@ public class EventoRepository implements BaseRepository<Evento> {
     }
 
     @Override
-    public void save(Evento entity) {
-
+    public Evento save(Evento entity) {
+        return null;
     }
 }

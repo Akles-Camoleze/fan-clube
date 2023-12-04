@@ -31,8 +31,8 @@ public class ComentarioRepository implements BaseRepository<Comentario> {
     }
 
     @Override
-    public void save(Comentario entity) {
-
+    public Comentario save(Comentario entity) {
+        return null;
     }
 
 }

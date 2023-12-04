@@ -31,7 +31,8 @@ public class RespostaRepository implements BaseRepository<Resposta> {
     }
 
     @Override
-    public void save(Resposta entity) {
+    public Resposta save(Resposta entity) {
+        return null;
     }
 
 }

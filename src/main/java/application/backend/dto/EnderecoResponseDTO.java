@@ -1,5 +1,6 @@
 package application.backend.dto;
 
+import application.backend.entities.Endereco;
 import application.database.DbException;
 
 import java.sql.ResultSet;
@@ -11,6 +12,9 @@ public class EnderecoResponseDTO implements DataTransferObject {
     private String bairro;
     private Integer numero;
     private CidadeResponseDTO cidade;
+
+    public EnderecoResponseDTO() {
+    }
 
     public EnderecoResponseDTO(ResultSet resultSet) {
         toDTO(resultSet);

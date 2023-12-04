@@ -1,12 +1,12 @@
 package application.backend.controller;
 
-import application.backend.dto.PessoaEnderecoCidadeDTO;
+import application.backend.dto.PessoaResponseDTO;
 import application.backend.entities.Pessoa;
+import application.backend.repository.EnderecoRepository;
 import application.backend.repository.PessoaRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,8 +24,19 @@ public class PessoaController extends Controller<PessoaRepository> {
     }
 
     @GetMapping("/{personId}")
-    public PessoaEnderecoCidadeDTO find(@PathVariable Integer personId) {
-        return this.repository.find(personId, PessoaEnderecoCidadeDTO.class);
+    public PessoaResponseDTO find(@PathVariable Integer personId) {
+        return this.repository.find(personId, PessoaResponseDTO.class);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<PessoaResponseDTO> register(@RequestBody Pessoa request) {
+        Pessoa person = this.repository.save(request);
+        if (person != null) {
+            person.setEndereco(new EnderecoRepository().find(person.getIdEndereco()));
+            PessoaResponseDTO dto = modelMapper.map(person, PessoaResponseDTO.class);
+            return ResponseEntity.ok(dto);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
 }

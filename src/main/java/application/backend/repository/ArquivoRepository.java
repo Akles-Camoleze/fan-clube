@@ -37,8 +37,8 @@ public class ArquivoRepository implements BaseRepository<Arquivo> {
     }
 
     @Override
-    public void save(Arquivo entity) {
-        performOperation((Connection connection) -> {});
+    public Arquivo save(Arquivo entity) {
+        return null;
     }
 
 }

@@ -22,7 +22,7 @@ public interface BaseRepository<T> {
 
     List<T> findAll();
 
-    void save(T entity);
+    T save(T entity);
 
     default <K> K performOperation(Perform<K> operation) {
         try (Connection connection = DataBase.getConnection()) {

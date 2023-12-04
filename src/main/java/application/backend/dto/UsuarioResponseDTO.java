@@ -2,6 +2,7 @@ package application.backend.dto;
 
 import application.backend.entities.Pessoa;
 import application.backend.entities.TipoUsuario;
+import application.backend.entities.Usuario;
 import application.database.DbException;
 
 import java.sql.ResultSet;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 
 public class UsuarioResponseDTO implements DataTransferObject {
     private Integer id;
-    private Pessoa pessoa;
+    private PessoaResponseDTO pessoa;
     private String nome;
     private String email;
     private TipoUsuario tipoUsuario;
@@ -42,11 +43,11 @@ public class UsuarioResponseDTO implements DataTransferObject {
         this.id = id;
     }
 
-    public Pessoa getPessoa() {
+    public PessoaResponseDTO getPessoa() {
         return pessoa;
     }
 
-    public void setPessoa(Pessoa pessoa) {
+    public void setPessoa(PessoaResponseDTO pessoa) {
         this.pessoa = pessoa;
     }
 

@@ -1,5 +1,6 @@
 package application.backend.dto;
 
+import application.backend.entities.Cidade;
 import application.database.DbException;
 
 import java.sql.ResultSet;
@@ -9,6 +10,10 @@ public class CidadeResponseDTO implements DataTransferObject {
     private Integer id;
     private String nome;
     private String uf;
+
+    public CidadeResponseDTO() {
+
+    }
 
     public CidadeResponseDTO(ResultSet resultSet) {
         toDTO(resultSet);
