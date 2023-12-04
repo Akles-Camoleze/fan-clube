@@ -3,8 +3,6 @@ package application.backend.controller;
 import application.backend.dto.UsuarioResponseDTO;
 import application.backend.entities.Usuario;
 import application.backend.repository.UsuarioRepository;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/user")
 public class UsuarioController extends Controller<UsuarioRepository> {
-
-    @Autowired
-    private ModelMapper modelMapper;
 
     UsuarioController() {
         super(new UsuarioRepository());

@@ -1,5 +1,10 @@
 package application.backend.entities;
 
+import application.database.DbException;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Usuario extends BaseEntity {
     private String nome;
     private String email;
@@ -10,6 +15,19 @@ public class Usuario extends BaseEntity {
     private Integer idPessoa;
 
     public Usuario() {
+    }
+
+    public Usuario(ResultSet resultSet) {
+        try {
+            id = resultSet.getInt("usr.id");
+            nome = resultSet.getString("usr.nome");
+            email = resultSet.getString("usr.email");
+            senha = resultSet.getString("usr.senha");
+            pessoa = new Pessoa(resultSet);
+            tipoUsuario = new TipoUsuario(resultSet);
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 
     public Usuario(String nome, String email, String senha, TipoUsuario tipoUsuario, Pessoa pessoa) {

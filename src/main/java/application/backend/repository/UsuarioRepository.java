@@ -56,43 +56,8 @@ public class UsuarioRepository implements BaseRepository<Usuario> {
                 st.setString(1, email);
                 ResultSet result = st.executeQuery();
 
-                System.out.println("Antes");
-                if(result.next()) {
-                    Cidade cidade = new Cidade();
-                    cidade.setId(result.getInt("cd.id"));
-                    cidade.setNome(result.getString("cd.nome"));
-                    cidade.setUf(result.getString("cd.uf"));
-
-                    Endereco endereco = new Endereco();
-                    endereco.setId(result.getInt("end.id"));
-                    endereco.setNumero(result.getInt("end.numero"));
-                    endereco.setRua(result.getString("end.rua"));
-                    endereco.setBairro(result.getString("end.bairro"));
-                    endereco.setCidade(cidade);
-
-                    Pessoa pessoa = new Pessoa();
-                    pessoa.setEndereco(endereco);
-                    pessoa.setId(result.getInt("ps.id"));
-                    pessoa.setNome(result.getString("ps.nome"));
-                    pessoa.setSobrenome(result.getString("ps.sobrenome"));
-                    pessoa.setTelefone(result.getString("ps.telefone"));
-                    pessoa.setDataNascimento(DateParser.parseString(result.getString("ps.dataNascimento")));
-
-                    TipoUsuario tipoUsuario = new TipoUsuario();
-                    tipoUsuario.setId(result.getInt("tp.id"));
-                    tipoUsuario.setNome(result.getString("tp.nome"));
-
-                    Usuario usuario = new Usuario();
-                    usuario.setId(result.getInt("usr.id"));
-                    usuario.setNome(result.getString("usr.nome"));
-                    usuario.setEmail(result.getString("usr.email"));
-                    usuario.setSenha(result.getString("usr.senha"));
-                    usuario.setPessoa(pessoa);
-                    usuario.setTipoUsuario(tipoUsuario);
-
-                    System.out.println(usuario);
-
-                    return usuario;
+                if (result.next()) {
+                    return new Usuario(result);
                 }
 
                 return null;

@@ -1,5 +1,10 @@
 package application.backend.entities;
 
+import application.database.DbException;
+import application.utils.DateParser;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class Pessoa extends BaseEntity {
@@ -11,6 +16,19 @@ public class Pessoa extends BaseEntity {
     private String telefone;
 
     public Pessoa() {
+    }
+
+    public Pessoa(ResultSet resultSet) {
+        try {
+            id = resultSet.getInt("ps.id");
+            nome = resultSet.getString("ps.nome");
+            sobrenome = resultSet.getString("ps.sobrenome");
+            telefone = resultSet.getString("ps.telefone");
+            dataNascimento = DateParser.parseString(resultSet.getString("ps.dataNascimento"));
+            this.endereco = new Endereco(resultSet);
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 
     public Pessoa(String nome, String sobrenome, Date dataNascimento, Endereco endereco, String telefone) {
