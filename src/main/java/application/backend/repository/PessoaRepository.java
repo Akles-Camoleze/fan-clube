@@ -21,14 +21,7 @@ public class PessoaRepository implements BaseRepository<Pessoa> {
     public <K extends DataTransferObject> K find(Integer id, Class<K> clazz) {
         return performOperation(connection -> {
             PreparedStatement st = connection.prepareStatement("""
-                    SELECT
-                        `ps`.*,
-                        `end`.`rua`,
-                        `end`.`bairro`,
-                        `end`.`numero`,
-                        `end`.`idCidade`,
-                        `cd`.`nome` as `nomeCidade`,
-                        `cd`.`uf` as `uf`
+                    SELECT `ps`.*, `end`.*, `cd`.*
                     FROM `fan_club`.`pessoa` as `ps`
                     JOIN `fan_club`.`endereco` as `end` on `end`.`id` = `ps`.`idEndereco`
                     JOIN `fan_club`.`cidade` as `cd` on `cd`.`id` = `end`.`idCidade`

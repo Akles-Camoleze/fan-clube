@@ -7,16 +7,12 @@ import java.sql.SQLException;
 import java.util.Date;
 
 public class PessoaEnderecoCidadeDTO implements DataTransferObject {
-    private Integer idPessoa;
-    private String nomePessoa;
-    private String sobrenomePessoa;
-    private Date dataNascimentoPessoa;
-    private String telefonePessoa;
-    private String bairroEndereco;
-    private String nomeCidade;
-    private String ufCidade;
-    private String ruaEndereco;
-    private Integer numeroEndereco;
+    private Integer id;
+    private String nome;
+    private String sobrenome;
+    private Date dataNascimento;
+    private String telefone;
+    private EnderecoResponseDTO endereco;
 
     public PessoaEnderecoCidadeDTO() {
     }
@@ -28,117 +24,74 @@ public class PessoaEnderecoCidadeDTO implements DataTransferObject {
     @Override
     public void toDTO(ResultSet resultSet) {
         try {
-            this.nomeCidade = resultSet.getString("nomeCidade");
-            this.ufCidade = resultSet.getString("uf");
-
-            this.ruaEndereco = resultSet.getString("rua");
-            this.numeroEndereco = resultSet.getInt("numero");
-            this.bairroEndereco = resultSet.getString("bairro");
-
-            this.idPessoa = resultSet.getInt("id");
-            this.nomePessoa = resultSet.getString("nome");
-            this.sobrenomePessoa = resultSet.getString("sobrenome");
-            this.telefonePessoa = resultSet.getString("telefone");
-
-            this.dataNascimentoPessoa = DateParser.parseString(resultSet.getString("dataNascimento"));
+            this.id = resultSet.getInt("ps.id");
+            this.nome = resultSet.getString("ps.nome");
+            this.sobrenome = resultSet.getString("ps.sobrenome");
+            this.telefone = resultSet.getString("ps.telefone");
+            this.endereco = new EnderecoResponseDTO(resultSet);
+            this.dataNascimento = DateParser.parseString(resultSet.getString("ps.dataNascimento"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public Integer getIdPessoa() {
-        return idPessoa;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdPessoa(Integer idPessoa) {
-        this.idPessoa = idPessoa;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getNomePessoa() {
-        return nomePessoa;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomePessoa(String nomePessoa) {
-        this.nomePessoa = nomePessoa;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public Date getDataNascimentoPessoa() {
-        return dataNascimentoPessoa;
+    public Date getDataNascimento() {
+        return dataNascimento;
     }
 
-    public void setDataNascimentoPessoa(Date dataNascimentoPessoa) {
-        this.dataNascimentoPessoa = dataNascimentoPessoa;
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
-    public String getBairroEndereco() {
-        return bairroEndereco;
+    public String getSobrenome() {
+        return sobrenome;
     }
 
-    public void setBairroEndereco(String bairroEndereco) {
-        this.bairroEndereco = bairroEndereco;
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
     }
 
-
-    public String getNomeCidade() {
-        return nomeCidade;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setNomeCidade(String nomeCidade) {
-        this.nomeCidade = nomeCidade;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public String getUfCidade() {
-        return ufCidade;
+    public EnderecoResponseDTO getEndereco() {
+        return endereco;
     }
 
-    public void setUfCidade(String ufCidade) {
-        this.ufCidade = ufCidade;
-    }
-
-    public String getRuaEndereco() {
-        return ruaEndereco;
-    }
-
-    public void setRuaEndereco(String ruaEndereco) {
-        this.ruaEndereco = ruaEndereco;
-    }
-
-    public Integer getNumeroEndereco() {
-        return numeroEndereco;
-    }
-
-    public void setNumeroEndereco(Integer numeroEndereco) {
-        this.numeroEndereco = numeroEndereco;
-    }
-
-    public String getSobrenomePessoa() {
-        return sobrenomePessoa;
-    }
-
-    public void setSobrenomePessoa(String sobrenomePessoa) {
-        this.sobrenomePessoa = sobrenomePessoa;
-    }
-
-    public String getTelefonePessoa() {
-        return telefonePessoa;
-    }
-
-    public void setTelefonePessoa(String telefonePessoa) {
-        this.telefonePessoa = telefonePessoa;
+    public void setEndereco(EnderecoResponseDTO endereco) {
+        this.endereco = endereco;
     }
 
     @Override
     public String toString() {
         return "PessoaEnderecoCidadeDTO{" +
-                "idPessoa=" + idPessoa +
-                ", nomePessoa='" + nomePessoa + '\'' +
-                ", sobrenomePessoa='" + sobrenomePessoa + '\'' +
-                ", dataNascimento=" + dataNascimentoPessoa +
-                ", bairroEndereco='" + bairroEndereco + '\'' +
-                ", nomeCidade='" + nomeCidade + '\'' +
-                ", ufCidade='" + ufCidade + '\'' +
-                ", ruaEndereco='" + ruaEndereco + '\'' +
-                ", numeroEndereco=" + numeroEndereco +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", sobrenome='" + sobrenome + '\'' +
+                ", dataNascimento=" + dataNascimento +
+                ", telefone='" + telefone + '\'' +
+                ", endereco=" + endereco +
                 '}';
     }
 }

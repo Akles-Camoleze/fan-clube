@@ -24,14 +24,7 @@ public class EventoRepository implements BaseRepository<Evento> {
     public <K extends DataTransferObject> List<K> findAll(Class<K> clazz) {
         return performOperation(connection -> {
             PreparedStatement st = connection.prepareStatement("""
-                    SELECT
-                        `env`.*,
-                        `end`.`rua`,
-                        `end`.`bairro`,
-                        `end`.`numero`,
-                        `end`.`idCidade`,
-                        `cd`.`uf`,
-                        `cd`.`nome` as `nomeCidade`
+                    SELECT `env`.*, `end`.*, `cd`.*
                     FROM `fan_club`.`evento` as `env`
                     JOIN `fan_club`.`endereco` as `end` ON `end`.`id` = `env`.`idEndereco`
                     JOIN `fan_club`.`cidade` as `cd` ON `cd`.`id` = `end`.`idCidade`
