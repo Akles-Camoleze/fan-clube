@@ -55,6 +55,7 @@ public class Migration {
                         "  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT," +
                         "  `nome` VARCHAR(100) NOT NULL," +
                         "  `sobrenome` VARCHAR(100) NOT NULL," +
+                        "  `telefone` VARCHAR(11) NOT NULL," +
                         "  `dataNascimento` DATE NOT NULL," +
                         "  `idEndereco` INT NOT NULL," +
                         "  PRIMARY KEY (`id`)," +

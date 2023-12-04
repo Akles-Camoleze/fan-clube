@@ -1,7 +1,7 @@
 package application.backend.dto;
 
 import application.utils.DateParser;
-import java.math.BigDecimal;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -10,7 +10,8 @@ public class PessoaEnderecoCidadeDTO implements DataTransferObject {
     private Integer idPessoa;
     private String nomePessoa;
     private String sobrenomePessoa;
-    private Date dataNascimento;
+    private Date dataNascimentoPessoa;
+    private String telefonePessoa;
     private String bairroEndereco;
     private String nomeCidade;
     private String ufCidade;
@@ -37,8 +38,9 @@ public class PessoaEnderecoCidadeDTO implements DataTransferObject {
             this.idPessoa = resultSet.getInt("id");
             this.nomePessoa = resultSet.getString("nome");
             this.sobrenomePessoa = resultSet.getString("sobrenome");
+            this.telefonePessoa = resultSet.getString("telefone");
 
-            this.dataNascimento = DateParser.parseString(resultSet.getString("dataNascimento"));
+            this.dataNascimentoPessoa = DateParser.parseString(resultSet.getString("dataNascimento"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -60,12 +62,12 @@ public class PessoaEnderecoCidadeDTO implements DataTransferObject {
         this.nomePessoa = nomePessoa;
     }
 
-    public Date getDataNascimento() {
-        return dataNascimento;
+    public Date getDataNascimentoPessoa() {
+        return dataNascimentoPessoa;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setDataNascimentoPessoa(Date dataNascimentoPessoa) {
+        this.dataNascimentoPessoa = dataNascimentoPessoa;
     }
 
     public String getBairroEndereco() {
@@ -117,13 +119,21 @@ public class PessoaEnderecoCidadeDTO implements DataTransferObject {
         this.sobrenomePessoa = sobrenomePessoa;
     }
 
+    public String getTelefonePessoa() {
+        return telefonePessoa;
+    }
+
+    public void setTelefonePessoa(String telefonePessoa) {
+        this.telefonePessoa = telefonePessoa;
+    }
+
     @Override
     public String toString() {
         return "PessoaEnderecoCidadeDTO{" +
                 "idPessoa=" + idPessoa +
                 ", nomePessoa='" + nomePessoa + '\'' +
                 ", sobrenomePessoa='" + sobrenomePessoa + '\'' +
-                ", dataNascimento=" + dataNascimento +
+                ", dataNascimento=" + dataNascimentoPessoa +
                 ", bairroEndereco='" + bairroEndereco + '\'' +
                 ", nomeCidade='" + nomeCidade + '\'' +
                 ", ufCidade='" + ufCidade + '\'' +

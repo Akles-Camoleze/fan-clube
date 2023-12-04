@@ -42,17 +42,17 @@ public class Seeder {
             "('Rua J1', 654, 'Jardim Botânico', 10);";
 
 
-    static final String insertPessoa = "INSERT INTO fan_club.pessoa (nome, sobrenome, dataNascimento, idEndereco) VALUES " +
-            "('Ana', 'Oliveira', '1988-03-20', 3)," +
-            "('Carlos', 'Pereira', '1995-07-10', 4)," +
-            "('Fernanda', 'Rodrigues', '1980-11-25', 5)," +
-            "('Lucas', 'Costa', '1992-04-15', 6)," +
-            "('Juliana', 'Almeida', '1987-09-30', 7)," +
-            "('Ricardo', 'Nunes', '1983-12-05', 8)," +
-            "('Amanda', 'Ferreira', '1998-02-18', 9)," +
-            "('Felipe', 'Mendes', '1986-06-22', 10)," +
-            "('Patricia', 'Souza', '1994-08-08', 1)," +
-            "('Gustavo', 'Lima', '1989-10-12', 2);";
+    static final String insertPessoa = "INSERT INTO fan_club.pessoa (nome, sobrenome, telefone, dataNascimento, idEndereco) VALUES " +
+            "('Ana', 'Oliveira', '11111111111', '1988-03-20', 3)," +
+            "('Carlos', 'Pereira', '22222222222', '1995-07-10', 4)," +
+            "('Fernanda', 'Rodrigues', '33333333333', '1980-11-25', 5)," +
+            "('Lucas', 'Costa', '44444444444', '1992-04-15', 6)," +
+            "('Juliana', 'Almeida', '55555555555', '1987-09-30', 7)," +
+            "('Ricardo', 'Nunes', '66666666666', '1983-12-05', 8)," +
+            "('Amanda', 'Ferreira', '77777777777', '1998-02-18', 9)," +
+            "('Felipe', 'Mendes', '88888888888', '1986-06-22', 10)," +
+            "('Patricia', 'Souza', '99999999999', '1994-08-08', 1)," +
+            "('Gustavo', 'Lima', '00000000000', '1989-10-12', 2);";
 
     static final String insertUsuario = "INSERT INTO fan_club.usuario (nome, email, senha, idTipoUsuario, idPessoa) VALUES " +
             "('john', 'john@example.com', 'john123', 1, 1)," +
