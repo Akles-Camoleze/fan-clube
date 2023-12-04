@@ -34,7 +34,8 @@ public class EventoRepository implements BaseRepository<Evento> {
                         `cd`.`nome` as `nomeCidade`
                     FROM `fan_club`.`evento` as `env`
                     JOIN `fan_club`.`endereco` as `end` ON `end`.`id` = `env`.`idEndereco`
-                    JOIN `fan_club`.`cidade` as `cd` ON `cd`.`id` = `end`.`idCidade`"""
+                    JOIN `fan_club`.`cidade` as `cd` ON `cd`.`id` = `end`.`idCidade`
+                    WHERE `env`.`data` > NOW();"""
             );
             return runQuery(st, clazz, new ArrayList<>());
         });

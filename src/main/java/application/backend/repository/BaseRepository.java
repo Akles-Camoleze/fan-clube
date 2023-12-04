@@ -49,15 +49,13 @@ public interface BaseRepository<T> {
 
     default <K extends DataTransferObject> List<K> runQuery(PreparedStatement st, Class<K> clazz, List<K> data) throws SQLException {
         ResultSet result = st.executeQuery();
-        if (result.next()) {
-            try {
-                while (result.next()) {
-                    Constructor<K> constructor = clazz.getDeclaredConstructor(ResultSet.class);
-                    data.add(constructor.newInstance(result));
-                }
-            } catch (Exception e) {
-                throw new RuntimeException(e.getMessage());
+        try {
+            while (result.next()) {
+                Constructor<K> constructor = clazz.getDeclaredConstructor(ResultSet.class);
+                data.add(constructor.newInstance(result));
             }
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
         }
         return data;
     }
