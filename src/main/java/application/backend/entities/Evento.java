@@ -1,6 +1,12 @@
 package application.backend.entities;
 
+import application.backend.dto.EnderecoResponseDTO;
+import application.database.DbException;
+import application.utils.DateParser;
+
 import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class Evento extends BaseEntity {
@@ -34,6 +40,21 @@ public class Evento extends BaseEntity {
         this.arquivo = arquivo;
         this.capacidade = capacidade;
         this.valor = valor;
+    }
+
+    public Evento(ResultSet resultSet) {
+        try {
+            id = resultSet.getInt("env.id");
+            nome = resultSet.getString("env.nome");
+            data = resultSet.getDate("env.data");
+            descricao = resultSet.getString("env.descricao");
+            capacidade = resultSet.getInt("env.capacidade");
+            valor = resultSet.getBigDecimal("env.valor");
+            endereco = new Endereco(resultSet);
+            arquivo = null;
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 
     public String getNome() {

@@ -1,11 +1,15 @@
 package application.backend.controller;
 
 import application.backend.dto.EventoResponseDTO;
+import application.backend.entities.Evento;
 import application.backend.repository.EventoRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,7 +21,13 @@ public class EventoController extends Controller<EventoRepository> {
     }
 
     @GetMapping("/all")
-    public List<EventoResponseDTO> findAll() {
-        return this.repository.findAll(EventoResponseDTO.class);
+    public ResponseEntity<List<EventoResponseDTO>> findAll() {
+        List<Evento> eventos = this.repository.findAll();
+        List<EventoResponseDTO> dtos = new ArrayList<>();
+        for (Evento evento : eventos) {
+            dtos.add(modelMapper.map(evento, EventoResponseDTO.class));
+        }
+        if (!dtos.isEmpty()) return ResponseEntity.ok(dtos);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 }

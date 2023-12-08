@@ -3,6 +3,7 @@ package application.backend.repository;
 import application.backend.dto.DataTransferObject;
 import application.backend.entities.*;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +37,22 @@ public class EventoRepository implements BaseRepository<Evento> {
 
     @Override
     public List<Evento> findAll() {
-        return null;
+        return performOperation(connection -> {
+            PreparedStatement st = connection.prepareStatement("""
+                    SELECT `env`.*, `end`.*, `cd`.*
+                    FROM `fan_club`.`evento` as `env`
+                    JOIN `fan_club`.`endereco` as `end` ON `end`.`id` = `env`.`idEndereco`
+                    JOIN `fan_club`.`cidade` as `cd` ON `cd`.`id` = `end`.`idCidade`
+                    WHERE `env`.`data` > NOW();"""
+            );
+            ArrayList<Evento> eventos = new ArrayList<>();
+            ResultSet result = st.executeQuery();
+
+            while (result.next()) {
+                eventos.add(new Evento(result));
+            }
+            return eventos;
+        });
     }
 
     @Override
