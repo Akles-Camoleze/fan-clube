@@ -98,7 +98,7 @@ public class Migration {
                 sql = "CREATE TABLE IF NOT EXISTS `fan_club`.`arquivo` (" +
                         "  `id` INT NOT NULL AUTO_INCREMENT," +
                         "  `caminho` VARCHAR(100) NOT NULL," +
-                        "  `dataUpload` DATETIME NOT NULL DEFAULT CURRENT_DATE," +
+                        "  `dataUpload` DATETIME NOT NULL DEFAULT NOW()," +
                         "  PRIMARY KEY (`id`))" +
                         "ENGINE = InnoDB;";
                 statement.executeUpdate(sql);
@@ -176,7 +176,7 @@ public class Migration {
 
                 sql = "CREATE TABLE IF NOT EXISTS `fan_club`.`inscricao` (" +
                         "  `id` INT NOT NULL AUTO_INCREMENT," +
-                        "  `dataInscricao` DATETIME NOT NULL DEFAULT CURRENT_DATE," +
+                        "  `dataInscricao` DATETIME NOT NULL DEFAULT NOW()," +
                         "  `idUsuario` INT UNSIGNED NOT NULL," +
                         "  `idEvento` INT NOT NULL," +
                         "  PRIMARY KEY (`id`)," +
