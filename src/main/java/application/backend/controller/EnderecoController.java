@@ -22,6 +22,7 @@ public class EnderecoController extends Controller<EnderecoRepository> {
 
     @PostMapping("/register")
     public ResponseEntity<EnderecoResponseDTO> register(@RequestBody Endereco request) {
+        request.setIdCidade(request.getCidade().getId());
         Endereco address = this.repository.save(request);
         if (address != null) {
             address.setCidade(new CidadeRepository().find(address.getIdCidade()));

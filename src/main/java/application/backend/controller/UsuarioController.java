@@ -29,6 +29,8 @@ public class UsuarioController extends Controller<UsuarioRepository> {
 
     @PostMapping("/register")
     public ResponseEntity<UsuarioResponseDTO> register(@RequestBody Usuario request) {
+        request.setIdPessoa(request.getPessoa().getId());
+        request.setIdTipoUsuario(request.getTipoUsuario().getId());
         Usuario user = this.repository.save(request);
         if (user != null) {
             user.setPessoa(new PessoaRepository().find(user.getIdPessoa()));

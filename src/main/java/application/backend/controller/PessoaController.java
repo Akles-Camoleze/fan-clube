@@ -30,6 +30,7 @@ public class PessoaController extends Controller<PessoaRepository> {
 
     @PostMapping("/register")
     public ResponseEntity<PessoaResponseDTO> register(@RequestBody Pessoa request) {
+        request.setIdEndereco(request.getEndereco().getId());
         Pessoa person = this.repository.save(request);
         if (person != null) {
             person.setEndereco(new EnderecoRepository().find(person.getIdEndereco()));
