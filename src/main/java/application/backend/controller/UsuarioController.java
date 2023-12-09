@@ -8,6 +8,8 @@ import application.backend.services.UsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.lang.model.type.NullType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,6 +67,16 @@ public class UsuarioController extends Controller<UsuarioService> {
             return ResponseEntity.ok(dtos);
         }
 
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @DeleteMapping("/{usuarioId}")
+    public ResponseEntity<Void> delete(@PathVariable Integer usuarioId) {
+        Usuario usuario = this.service.find(usuarioId);
+        if (usuario != null) {
+            this.service.delete(usuario);
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 }

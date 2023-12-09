@@ -1,11 +1,9 @@
 package application.backend.repository;
 
 import application.backend.dto.DataTransferObject;
-import application.backend.dto.EventoReportDTO;
 import application.backend.dto.PessoaReportDTO;
 import application.backend.entities.Pessoa;
 import application.database.DataBase;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -105,6 +103,16 @@ public class PessoaRepository extends BaseRepository<Pessoa> {
             DataBase.closeStatement(st);
 
             return null;
+        });
+    }
+
+    public void delete(Pessoa entity) {
+        performOperation(connection -> {
+            String sql = "DELETE FROM `fan_club`.`pessoa` WHERE id = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, entity.getId());
+            st.executeUpdate();
+            DataBase.closeStatement(st);
         });
     }
 

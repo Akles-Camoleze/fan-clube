@@ -55,4 +55,21 @@ public class UsuarioService extends BaseService<Usuario, UsuarioRepository> {
         return this.repository.findAll();
     }
 
+    public void delete(Usuario usuario) {
+        List<Supplier<? extends BaseEntity>> operations = new ArrayList<>();
+        operations.add(() -> {
+            pessoaService.delete(usuario.getPessoa());
+            return null;
+        });
+        operations.add(() -> {
+            this.repository.delete(usuario);
+            return null;
+        });
+        this.repository.performTransaction(operations);
+    }
+
+    public Usuario find(Integer id) {
+        return this.repository.find(id);
+    }
+
 }

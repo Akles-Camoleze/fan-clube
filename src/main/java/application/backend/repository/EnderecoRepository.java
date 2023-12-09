@@ -3,7 +3,6 @@ package application.backend.repository;
 import application.backend.dto.DataTransferObject;
 import application.backend.entities.Endereco;
 import application.database.DataBase;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +77,16 @@ public class EnderecoRepository extends BaseRepository<Endereco> {
 
             return null;
         }));
+    }
+
+    public void delete(Endereco entity) {
+        performOperation(connection -> {
+            String sql = "DELETE FROM `fan_club`.`usuario` WHERE id = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, entity.getId());
+            st.executeUpdate();
+            DataBase.closeStatement(st);
+        });
     }
 
 }

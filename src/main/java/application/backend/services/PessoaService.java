@@ -38,6 +38,19 @@ public class PessoaService extends BaseService<Pessoa, PessoaRepository> {
         return this.repository.performTransaction(operations);
     }
 
+    public void delete(Pessoa pessoa) {
+        List<Supplier<? extends BaseEntity>> operations = new ArrayList<>();
+        operations.add(() -> {
+            this.enderecoService.delete(pessoa.getEndereco());
+            return null;
+        });
+        operations.add(() -> {
+            this.repository.delete(pessoa);
+            return null;
+        });
+        this.repository.performTransaction(operations);
+    }
+
     public List<PessoaReportDTO> getPessoaReport() {
         return this.repository.getPessoaReport();
     }

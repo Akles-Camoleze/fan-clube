@@ -15,4 +15,8 @@ public class EnderecoService extends BaseService<Endereco, EnderecoRepository> {
         endereco.setIdCidade(endereco.getCidade().getId());
         return this.repository.save(endereco);
     }
+
+    public void delete(Endereco endereco) {
+        this.repository.delete(endereco);
+    }
 }
