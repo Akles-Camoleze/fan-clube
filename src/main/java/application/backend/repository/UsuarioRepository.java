@@ -27,11 +27,13 @@ public class UsuarioRepository extends BaseRepository<Usuario> {
                 );
                 ResultSet result = st.executeQuery();
 
+                Usuario usuario = null;
                 if (result.next()) {
-                    return new Usuario(result);
+                    usuario = new Usuario(result);
                 }
+                DataBase.closeResultSet(result);
 
-                return null;
+                return usuario;
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -65,6 +67,8 @@ public class UsuarioRepository extends BaseRepository<Usuario> {
             while (result.next()) {
                 usuarios.add(new Usuario(result));
             }
+            DataBase.closeResultSet(result);
+            DataBase.closeStatement(st);
             return usuarios;
         });
     }
