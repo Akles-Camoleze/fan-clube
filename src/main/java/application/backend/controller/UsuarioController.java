@@ -8,7 +8,6 @@ import application.backend.services.UsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,12 +34,22 @@ public class UsuarioController extends Controller<UsuarioService> {
         Usuario user = this.service.save(request);
 
         if (user != null) {
-            user.setPessoa(new PessoaRepository().find(user.getIdPessoa()));
-            user.setTipoUsuario(new TipoUsuarioRepository().find(user.getIdTipoUsuario()));
             UsuarioResponseDTO dto = modelMapper.map(user, UsuarioResponseDTO.class);
             return ResponseEntity.ok(dto);
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<UsuarioResponseDTO> update(@RequestBody Usuario request) {
+        Usuario user = this.service.update(request);
+
+        if (user != null) {
+            UsuarioResponseDTO dto = modelMapper.map(user, UsuarioResponseDTO.class);
+            return ResponseEntity.ok(dto);
+        }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
     @GetMapping("/all")

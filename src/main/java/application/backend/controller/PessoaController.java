@@ -27,7 +27,7 @@ public class PessoaController extends Controller<PessoaService> {
 
     @GetMapping("/{personId}")
     public PessoaResponseDTO find(@PathVariable Integer personId) {
-        return this.service.find(personId);
+        return modelMapper.map(this.service.find(personId), PessoaResponseDTO.class);
     }
 
     @PostMapping("/register")

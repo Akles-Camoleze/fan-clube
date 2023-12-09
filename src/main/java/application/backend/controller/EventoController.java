@@ -3,7 +3,6 @@ package application.backend.controller;
 import application.backend.dto.EventoReportDTO;
 import application.backend.dto.EventoResponseDTO;
 import application.backend.entities.Evento;
-import application.backend.repository.EventoRepository;
 import application.backend.services.EventoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +25,14 @@ public class EventoController extends Controller<EventoService> {
     @GetMapping("/all")
     public ResponseEntity<List<EventoResponseDTO>> findAll() {
         List<Evento> eventos = this.service.findAll();
+        if (eventos.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
         List<EventoResponseDTO> dtos = new ArrayList<>();
         for (Evento evento : eventos) {
             dtos.add(modelMapper.map(evento, EventoResponseDTO.class));
         }
-        if (!dtos.isEmpty()) return ResponseEntity.ok(dtos);
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        return ResponseEntity.ok(dtos);
     }
 
     @GetMapping("/subscription-report")

@@ -24,8 +24,8 @@ public class PessoaService extends BaseService<Pessoa, PessoaRepository> {
         return this.repository.findAll();
     }
 
-    public PessoaResponseDTO find(Integer id) {
-        return this.repository.find(id, PessoaResponseDTO.class);
+    public Pessoa find(Integer id) {
+        return this.repository.find(id);
     }
 
     public Pessoa save(Pessoa pessoa) {

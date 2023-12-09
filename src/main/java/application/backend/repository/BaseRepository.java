@@ -113,10 +113,12 @@ public abstract class BaseRepository<T> {
     }
 
 
-    public void performOperation(Consumer<Connection> operation) {
+    public void performOperation(ConnectionConsumer operation) {
         try {
             Connection connection = DataBase.getConnection();
             operation.accept(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         } finally {
             if (!transaction.isTransactionOpened()) {
                 DataBase.closeConnection();

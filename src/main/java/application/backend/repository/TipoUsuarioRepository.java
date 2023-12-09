@@ -43,7 +43,15 @@ public class TipoUsuarioRepository extends BaseRepository<TipoUsuario> {
 
     @Override
     public List<TipoUsuario> findAll() {
-        return new ArrayList<>();
+        return performOperation(connection -> {
+            PreparedStatement st = connection.prepareStatement("SELECT * FROM `fan_club`.`tipoUsuario` as `tp`;");
+            ArrayList<TipoUsuario> tiposUsuarios = new ArrayList<>();
+            ResultSet result = st.executeQuery();
+            while (result.next()) {
+                tiposUsuarios.add(new TipoUsuario(result));
+            }
+            return tiposUsuarios;
+        });
     }
 
     @Override
