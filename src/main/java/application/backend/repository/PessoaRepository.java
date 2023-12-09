@@ -5,19 +5,17 @@ import application.backend.dto.EventoReportDTO;
 import application.backend.dto.PessoaReportDTO;
 import application.backend.entities.Pessoa;
 import application.database.DataBase;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Date;
 
 public class PessoaRepository implements BaseRepository<Pessoa> {
     public PessoaRepository() {
     }
 
     @Override
-    public Pessoa find(Integer id)  {
+    public Pessoa find(Integer id) {
         return performOperation(connection -> {
             PreparedStatement st = connection.prepareStatement("""
                     SELECT `ps`.*, `end`.*, `cd`.*
@@ -80,32 +78,35 @@ public class PessoaRepository implements BaseRepository<Pessoa> {
     }
 
     @Override
-    public Pessoa save(Pessoa entity) {
-        return performOperation(connection -> {
-            PreparedStatement st = connection.prepareStatement("""
-                    INSERT INTO `fan_club`.`pessoa` (nome, sobrenome, telefone, dataNascimento, idEndereco)
-                    VALUES (?, ?, ?, ?, ?)""",
-                    Statement.RETURN_GENERATED_KEYS
-            );
-            st.setString(1, entity.getNome());
-            st.setString(2, entity.getSobrenome());
-            st.setString(3, entity.getTelefone());
-            st.setDate(4, new Date(entity.getDataNascimento().getTime()));
-            st.setInt(5, entity.getIdEndereco());
+    public Pessoa save(Connection connection, Pessoa entity) throws SQLException {
+        PreparedStatement st = connection.prepareStatement("""
+                        INSERT INTO `fan_club`.`pessoa` (nome, sobrenome, telefone, dataNascimento, idEndereco)
+                        VALUES (?, ?, ?, ?, ?)""",
+                Statement.RETURN_GENERATED_KEYS
+        );
+        st.setString(1, entity.getNome());
+        st.setString(2, entity.getSobrenome());
+        st.setString(3, entity.getTelefone());
+        st.setDate(4, new Date(entity.getDataNascimento().getTime()));
+        st.setInt(5, entity.getIdEndereco());
 
-            int rowsAffected = st.executeUpdate();
+        int rowsAffected = st.executeUpdate();
 
-            if (rowsAffected > 0) {
-                ResultSet resultSet = st.getGeneratedKeys();
-                if (resultSet.next()) {
-                    entity.setId(resultSet.getInt(1));
-                }
-                DataBase.closeResultSet(resultSet);
-                return entity;
+        if (rowsAffected > 0) {
+            ResultSet resultSet = st.getGeneratedKeys();
+            if (resultSet.next()) {
+                entity.setId(resultSet.getInt(1));
             }
-            DataBase.closeStatement(st);
+            DataBase.closeResultSet(resultSet);
+            return entity;
+        }
+        DataBase.closeStatement(st);
 
-            return null;
-        });
+        return null;
+    }
+
+    @Override
+    public Pessoa save(Pessoa entity) {
+        return null;
     }
 }

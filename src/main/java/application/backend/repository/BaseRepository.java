@@ -1,6 +1,7 @@
 package application.backend.repository;
 
 import application.backend.dto.DataTransferObject;
+import application.backend.entities.BaseEntity;
 import application.database.DataBase;
 import application.database.DbException;
 
@@ -10,11 +11,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.function.Consumer;
 
 public interface BaseRepository<T> {
+    Transaction transaction = new Transaction();
+
     T find(Integer id);
 
     <K extends DataTransferObject> K find(Integer id, Class<K> clazz);
@@ -22,6 +25,10 @@ public interface BaseRepository<T> {
     <K extends DataTransferObject> List<K> findAll(Class<K> clazz);
 
     List<T> findAll();
+
+    default T save(Connection connection, T entity) throws SQLException {
+        return null;
+    }
 
     T save(T entity);
 
@@ -31,8 +38,48 @@ public interface BaseRepository<T> {
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
         } finally {
-            DataBase.closeConnection();
+            if (!transaction.isTransactionOpened()) {
+                DataBase.closeConnection();
+            }
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    default <K extends BaseEntity> K performTransaction(List<Perform<? extends BaseEntity>> operations) {
+        Connection connection = DataBase.getConnection();
+        K lastResult = null;
+        boolean canClose = false;
+        try {
+            if (!transaction.isTransactionOpened()) {
+                transaction.setTransactionOpened(true);
+                connection.setAutoCommit(false);
+                canClose = true;
+            }
+
+            Perform<K> lastOperation = (Perform<K>) operations.remove(operations.size() - 1);
+            for (Perform<?> operation : operations) {
+                operation.get(connection);
+            }
+            lastResult = lastOperation.get(connection);
+
+            if (canClose) {
+                connection.commit();
+            }
+
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new DbException(e.getMessage());
+            }
+        } finally {
+            if (canClose) {
+                DataBase.closeConnection();
+                transaction.setTransactionOpened(false);
+            }
+        }
+
+        return lastResult;
     }
 
     default <K extends DataTransferObject> K runQuery(PreparedStatement st, Class<K> clazz) throws SQLException {

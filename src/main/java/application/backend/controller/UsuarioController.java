@@ -4,7 +4,7 @@ import application.backend.dto.UsuarioResponseDTO;
 import application.backend.entities.Usuario;
 import application.backend.repository.PessoaRepository;
 import application.backend.repository.TipoUsuarioRepository;
-import application.backend.repository.UsuarioRepository;
+import application.backend.services.UsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +14,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
-public class UsuarioController extends Controller<UsuarioRepository> {
+public class UsuarioController extends Controller<UsuarioService> {
 
     UsuarioController() {
-        super(new UsuarioRepository());
+        super(new UsuarioService());
     }
 
     @PostMapping("/login")
     public ResponseEntity<UsuarioResponseDTO> login(@RequestBody Usuario request) {
-        Usuario user = this.repository.findByEmail(request.getEmail());
+        Usuario user = this.service.findByEmail(request.getEmail());
         if (user != null && user.getSenha().equals(request.getSenha())) {
             UsuarioResponseDTO dto = modelMapper.map(user, UsuarioResponseDTO.class);
             return ResponseEntity.ok(dto);
@@ -32,9 +32,8 @@ public class UsuarioController extends Controller<UsuarioRepository> {
 
     @PostMapping("/register")
     public ResponseEntity<UsuarioResponseDTO> register(@RequestBody Usuario request) {
-        request.setIdPessoa(request.getPessoa().getId());
-        request.setIdTipoUsuario(request.getTipoUsuario().getId());
-        Usuario user = this.repository.save(request);
+        Usuario user = this.service.save(request);
+
         if (user != null) {
             user.setPessoa(new PessoaRepository().find(user.getIdPessoa()));
             user.setTipoUsuario(new TipoUsuarioRepository().find(user.getIdTipoUsuario()));
@@ -46,10 +45,10 @@ public class UsuarioController extends Controller<UsuarioRepository> {
 
     @GetMapping("/all")
     public ResponseEntity<List<UsuarioResponseDTO>> getAll() {
-        List<Usuario> usuarios = this.repository.findAll();
+        List<Usuario> usuarios = this.service.findAll();
         List<UsuarioResponseDTO> dtos = new ArrayList<>();
 
-        for (Usuario usuario: usuarios) {
+        for (Usuario usuario : usuarios) {
             dtos.add(modelMapper.map(usuario, UsuarioResponseDTO.class));
         }
 
