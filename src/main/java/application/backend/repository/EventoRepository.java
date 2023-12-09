@@ -1,6 +1,7 @@
 package application.backend.repository;
 
 import application.backend.dto.DataTransferObject;
+import application.backend.dto.EventoReportDTO;
 import application.backend.entities.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -55,8 +56,27 @@ public class EventoRepository implements BaseRepository<Evento> {
         });
     }
 
+    public List<EventoReportDTO> getSubscriptionReport(Integer year) {
+        return performOperation(connection -> {
+            PreparedStatement st = connection.prepareStatement("""
+                    SELECT
+                    	YEAR(`env`.`data`) AS `year`,
+                    	MONTH(`env`.`data`) AS `month`,
+                    	COUNT(`env`.`id`) AS `qtdEvento`,
+                    	SUM(`env`.`valor`) AS `total`
+                    FROM `fan_club`.`evento` as `env`
+                    GROUP BY `year`, `month`
+                    HAVING (? IS NULL OR `year` = ?);"""
+            );
+            st.setObject(1, year);
+            st.setObject(2, year);
+            return runQuery(st, EventoReportDTO.class, new ArrayList<>());
+        });
+    }
+
     @Override
     public Evento save(Evento entity) {
         return null;
     }
+
 }

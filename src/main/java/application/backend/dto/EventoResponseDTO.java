@@ -4,13 +4,14 @@ import application.utils.DateParser;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class EventoResponseDTO implements DataTransferObject {
     private Integer id;
     private String nome;
     private Integer capacidade;
-    private Date data;
+    private Timestamp data;
     private String descricao;
     private BigDecimal valor;
     private EnderecoResponseDTO endereco;
@@ -30,7 +31,7 @@ public class EventoResponseDTO implements DataTransferObject {
             this.capacidade = resultSet.getInt("env.capacidade");
             this.descricao = resultSet.getString("env.descricao");
             this.valor = resultSet.getBigDecimal("env.valor");
-            this.data = DateParser.parseString(resultSet.getString("env.data"));
+            this.data = resultSet.getTimestamp("env.data");
             this.endereco = new EnderecoResponseDTO(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -61,11 +62,11 @@ public class EventoResponseDTO implements DataTransferObject {
         this.capacidade = capacidade;
     }
 
-    public Date getData() {
+    public Timestamp getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(Timestamp data) {
         this.data = data;
     }
 

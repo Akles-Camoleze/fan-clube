@@ -3,9 +3,6 @@ package application.backend.repository;
 import application.backend.dto.DataTransferObject;
 import application.backend.entities.*;
 import application.database.DataBase;
-import application.utils.DateParser;
-
-import java.lang.reflect.Constructor;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +28,23 @@ public class UsuarioRepository implements BaseRepository<Usuario> {
 
     @Override
     public List<Usuario> findAll() {
-        return new ArrayList<>();
+        return performOperation(connection -> {
+            PreparedStatement st = connection.prepareStatement("""
+                    SELECT `usr`.*, `tp`.*, `ps`.*, `end`.*, `cd`.*
+                        FROM `fan_club`.`usuario` as `usr`
+                        JOIN `fan_club`.`tipoUsuario` as `tp` on `tp`.`id` = `usr`.`idTipoUsuario`
+                        JOIN `fan_club`.`pessoa` as `ps` on `ps`.`id` = `usr`.`idPessoa`
+                        JOIN `fan_club`.`endereco` as `end` on `end`.`id` = `ps`.`idEndereco`
+                        JOIN `fan_club`.`cidade` as `cd` on `cd`.`id` = `end`.`idCidade`;"""
+            );
+            ArrayList<Usuario> usuarios = new ArrayList<>();
+            ResultSet result = st.executeQuery();
+
+            while (result.next()) {
+                usuarios.add(new Usuario(result));
+            }
+            return usuarios;
+        });
     }
 
     @Override
