@@ -25,7 +25,7 @@ public class EnderecoResponseDTO implements DataTransferObject {
         try {
             this.id = resultSet.getInt("end.id");
             this.rua = resultSet.getString("end.rua");
-            this.bairro = resultSet.getString("usr.bairro");
+            this.bairro = resultSet.getString("end.bairro");
             this.numero = resultSet.getInt("end.numero");
             this.cidade = new CidadeResponseDTO(resultSet);
         } catch (SQLException e) {

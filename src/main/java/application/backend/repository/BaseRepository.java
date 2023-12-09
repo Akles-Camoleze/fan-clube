@@ -5,6 +5,7 @@ import application.database.DataBase;
 import application.database.DbException;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -54,7 +55,9 @@ public interface BaseRepository<T> {
                 Constructor<K> constructor = clazz.getDeclaredConstructor(ResultSet.class);
                 data.add(constructor.newInstance(result));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            throw new DbException("Db: " + e.getMessage());
+        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e.getMessage());
         }
         return data;

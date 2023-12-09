@@ -1,5 +1,6 @@
 package application.backend.controller;
 
+import application.backend.dto.PessoaReportDTO;
 import application.backend.dto.PessoaResponseDTO;
 import application.backend.entities.Pessoa;
 import application.backend.repository.EnderecoRepository;
@@ -38,6 +39,15 @@ public class PessoaController extends Controller<PessoaRepository> {
             return ResponseEntity.ok(dto);
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @GetMapping("/person-report")
+    public ResponseEntity<List<PessoaReportDTO>> getPessoaReport() {
+        List<PessoaReportDTO> dtos = this.repository.getPessoaReport();
+        if (!dtos.isEmpty()) {
+            return ResponseEntity.ok(dtos);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
 }

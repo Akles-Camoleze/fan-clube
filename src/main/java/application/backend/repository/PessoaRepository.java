@@ -1,6 +1,8 @@
 package application.backend.repository;
 
 import application.backend.dto.DataTransferObject;
+import application.backend.dto.EventoReportDTO;
+import application.backend.dto.PessoaReportDTO;
 import application.backend.entities.Pessoa;
 import application.database.DataBase;
 import java.sql.PreparedStatement;
@@ -51,6 +53,25 @@ public class PessoaRepository implements BaseRepository<Pessoa> {
     @Override
     public <K extends DataTransferObject> List<K> findAll(Class<K> clazz) {
         return null;
+    }
+
+    public List<PessoaReportDTO> getPessoaReport() {
+        return performOperation(connection -> {
+            PreparedStatement st = connection.prepareStatement("""
+                    SELECT
+                        `ps`.*,
+                        `end`.*,
+                        `cd`.*,
+                        COUNT(`ins`.`id`) AS `qtdInscricao`
+                    FROM `fan_club`.`pessoa` AS `ps`
+                    JOIN `fan_club`.`endereco` AS `end` ON `end`.`id` = `ps`.`idEndereco`
+                    JOIN `fan_club`.`cidade` AS `cd` ON `cd`.`id` = `end`.`idCidade`
+                    JOIN `fan_club`.`usuario` AS `usr` ON `usr`.`idPessoa` = `ps`.`id`
+                    LEFT JOIN `fan_club`.`inscricao` AS `ins` ON `ins`.`idUsuario` = `usr`.`id`
+                    GROUP BY `ps`.`id`;"""
+            );
+            return runQuery(st, PessoaReportDTO.class, new ArrayList<>());
+        });
     }
 
     @Override

@@ -30,7 +30,7 @@ public class PessoaResponseDTO implements DataTransferObject {
             this.sobrenome = resultSet.getString("ps.sobrenome");
             this.telefone = resultSet.getString("ps.telefone");
             this.endereco = new EnderecoResponseDTO(resultSet);
-            this.dataNascimento = DateParser.parseString(resultSet.getString("ps.dataNascimento"));
+            this.dataNascimento = resultSet.getDate("ps.dataNascimento");
         } catch (SQLException e) {
             e.printStackTrace();
         }

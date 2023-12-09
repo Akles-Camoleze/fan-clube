@@ -1,10 +1,7 @@
 package application.backend.dto;
 
-import application.backend.entities.Pessoa;
 import application.backend.entities.TipoUsuario;
-import application.backend.entities.Usuario;
 import application.database.DbException;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
