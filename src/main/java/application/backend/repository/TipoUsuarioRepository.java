@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TipoUsuarioRepository implements BaseRepository<TipoUsuario> {
+public class TipoUsuarioRepository extends BaseRepository<TipoUsuario> {
 
     public TipoUsuarioRepository() {
     }

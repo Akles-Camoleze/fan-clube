@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnderecoRepository implements BaseRepository<Endereco> {
+public class EnderecoRepository extends BaseRepository<Endereco> {
 
     public EnderecoRepository() {
     }
@@ -48,33 +48,36 @@ public class EnderecoRepository implements BaseRepository<Endereco> {
     }
 
     @Override
-    public Endereco save(Connection connection, Endereco entity) throws SQLException {
-        PreparedStatement st = connection.prepareStatement("""
-                        INSERT INTO `fan_club`.`endereco` (rua, numero, bairro, idCidade)
-                        VALUES (?, ?, ?, ?)""",
-                Statement.RETURN_GENERATED_KEYS
-        );
-        st.setString(1, entity.getRua());
-        st.setInt(2, entity.getNumero());
-        st.setString(3, entity.getBairro());
-        st.setInt(4, entity.getIdCidade());
-
-        if (st.executeUpdate() > 0) {
-            ResultSet resultSet = st.getGeneratedKeys();
-            if (resultSet.next()) {
-                entity.setId(resultSet.getInt(1));
-            }
-            DataBase.closeResultSet(resultSet);
-            return entity;
-        }
-        DataBase.closeStatement(st);
-
+    public Endereco save(Connection connection, Endereco entity) {
         return null;
     }
 
     @Override
     public Endereco save(Endereco entity) {
-        return null;
+        return performOperation((connection -> {
+            PreparedStatement st = connection.prepareStatement("""
+                            INSERT INTO `fan_club`.`endereco` (rua, numero, bairro, idCidade)
+                            VALUES (?, ?, ?, ?)""",
+                    Statement.RETURN_GENERATED_KEYS
+            );
+            st.setString(1, entity.getRua());
+            st.setInt(2, entity.getNumero());
+            st.setString(3, entity.getBairro());
+            st.setInt(4, entity.getIdCidade());
+
+            if (st.executeUpdate() > 0) {
+                ResultSet resultSet = st.getGeneratedKeys();
+                if (resultSet.next()) {
+                    entity.setId(resultSet.getInt(1));
+                }
+                DataBase.closeResultSet(resultSet);
+                DataBase.closeStatement(st);
+                return entity;
+            }
+            DataBase.closeStatement(st);
+
+            return null;
+        }));
     }
 
 }

@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArquivoRepository implements BaseRepository<Arquivo> {
+public class ArquivoRepository extends BaseRepository<Arquivo> {
     public ArquivoRepository() {
     }
 

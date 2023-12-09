@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CidadeRepository implements BaseRepository<Cidade> {
+public class CidadeRepository extends BaseRepository<Cidade> {
     public CidadeRepository() {
     }
 

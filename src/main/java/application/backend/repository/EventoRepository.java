@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventoRepository implements BaseRepository<Evento> {
+public class EventoRepository extends BaseRepository<Evento> {
     public EventoRepository() {
     }
 

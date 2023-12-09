@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioRepository implements BaseRepository<Usuario> {
+public class UsuarioRepository extends BaseRepository<Usuario> {
     public UsuarioRepository() {
     }
 
@@ -49,35 +49,34 @@ public class UsuarioRepository implements BaseRepository<Usuario> {
     }
 
     @Override
-    public Usuario save(Connection connection, Usuario entity) throws SQLException {
-        PreparedStatement st = connection.prepareStatement("""
+    public Usuario save(Usuario entity) {
+        return performOperation((connection -> {
+            PreparedStatement st = connection.prepareStatement("""
                         INSERT INTO `fan_club`.`usuario` (nome, email, senha, idPessoa, idTipoUsuario)
                         VALUES (?, ?, ?, ?, ?)""",
-                Statement.RETURN_GENERATED_KEYS
-        );
-        st.setString(1, entity.getNome());
-        st.setString(2, entity.getEmail());
-        st.setString(3, entity.getSenha());
-        st.setInt(4, entity.getIdPessoa());
-        st.setInt(5, entity.getIdTipoUsuario());
+                    Statement.RETURN_GENERATED_KEYS
+            );
+            st.setString(1, entity.getNome());
+            st.setString(2, entity.getEmail());
+            st.setString(3, entity.getSenha());
+            st.setInt(4, entity.getIdPessoa());
+            st.setInt(5, entity.getIdTipoUsuario());
 
-        if (st.executeUpdate() > 0) {
-            ResultSet resultSet = st.getGeneratedKeys();
-            if (resultSet.next()) {
-                entity.setId(resultSet.getInt(1));
+            if (st.executeUpdate() > 0) {
+                ResultSet resultSet = st.getGeneratedKeys();
+                if (resultSet.next()) {
+                    entity.setId(resultSet.getInt(1));
+                }
+                DataBase.closeResultSet(resultSet);
+                DataBase.closeStatement(st);
+                return entity;
             }
-            DataBase.closeResultSet(resultSet);
-            return entity;
-        }
-        DataBase.closeStatement(st);
+            DataBase.closeStatement(st);
 
-        return null;
+            return null;
+        }));
     }
 
-    @Override
-    public Usuario save(Usuario entity) {
-        return null;
-    }
 
     public Usuario findByEmail(String email) {
         return performOperation(connection -> {

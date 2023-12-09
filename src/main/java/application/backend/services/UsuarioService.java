@@ -7,6 +7,8 @@ import application.backend.repository.UsuarioRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
+
 import static application.backend.enums.TipoUsuarioEnum.COMUM;
 
 public class UsuarioService extends BaseService<Usuario, UsuarioRepository> {
@@ -22,12 +24,12 @@ public class UsuarioService extends BaseService<Usuario, UsuarioRepository> {
     }
 
     public Usuario save(Usuario usuario) {
-        List<Perform<? extends BaseEntity>> operations = new ArrayList<>();
-        operations.add((connection) -> pessoaService.save(usuario.getPessoa()));
-        operations.add( (connection) -> {
+        List<Supplier<? extends BaseEntity>> operations = new ArrayList<>();
+        operations.add(() -> pessoaService.save(usuario.getPessoa()));
+        operations.add(() -> {
             usuario.setIdPessoa(usuario.getPessoa().getId());
             usuario.setIdTipoUsuario(COMUM.getId());
-            return this.repository.save(connection, usuario);
+            return this.repository.save(usuario);
         });
         return this.repository.performTransaction(operations);
     }

@@ -6,7 +6,7 @@ import application.backend.entities.Resposta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RespostaRepository implements BaseRepository<Resposta> {
+public class RespostaRepository extends BaseRepository<Resposta> {
     public RespostaRepository() {
     }
 

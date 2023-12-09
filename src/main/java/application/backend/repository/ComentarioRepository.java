@@ -6,7 +6,7 @@ import application.backend.entities.Comentario;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComentarioRepository implements BaseRepository<Comentario> {
+public class ComentarioRepository extends BaseRepository<Comentario> {
     public ComentarioRepository() {
     }
 

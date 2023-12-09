@@ -6,7 +6,7 @@ import application.backend.entities.Inscricao;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InscricaoRepository implements BaseRepository<Inscricao> {
+public class InscricaoRepository extends BaseRepository<Inscricao> {
     public InscricaoRepository() {
     }
 
