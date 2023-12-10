@@ -3,8 +3,11 @@ package application.backend.repository;
 import application.backend.dto.DataTransferObject;
 import application.backend.dto.EventoReportDTO;
 import application.backend.entities.*;
+import application.database.DataBase;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +79,32 @@ public class EventoRepository extends BaseRepository<Evento> {
 
     @Override
     public Evento save(Evento entity) {
-        return null;
+        return performOperation((connection -> {
+            PreparedStatement st = connection.prepareStatement("""
+                            INSERT INTO `fan_club`.`evento` (nome, data, descricao, idEndereco, capacidade, valor)
+                            VALUES (?, ?, ?, ?, ?, ?)""",
+                    Statement.RETURN_GENERATED_KEYS
+            );
+            st.setString(1, entity.getNome());
+            st.setTimestamp(2, entity.getData());
+            st.setString(3, entity.getDescricao());
+            st.setInt(4, entity.getIdEndereco());
+            st.setInt(5, entity.getCapacidade());
+            st.setBigDecimal(6, entity.getValor());
+
+            if (st.executeUpdate() > 0) {
+                ResultSet resultSet = st.getGeneratedKeys();
+                if (resultSet.next()) {
+                    entity.setId(resultSet.getInt(1));
+                }
+                DataBase.closeResultSet(resultSet);
+                DataBase.closeStatement(st);
+                return entity;
+            }
+            DataBase.closeStatement(st);
+
+            return null;
+        }));
     }
 
 }

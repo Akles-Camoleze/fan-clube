@@ -34,7 +34,6 @@ public class PessoaController extends Controller<PessoaService> {
     public ResponseEntity<PessoaResponseDTO> register(@RequestBody Pessoa request) {
         Pessoa person = this.service.save(request);
         if (person != null) {
-            person.setEndereco(new EnderecoRepository().find(person.getIdEndereco()));
             PessoaResponseDTO dto = modelMapper.map(person, PessoaResponseDTO.class);
             return ResponseEntity.ok(dto);
         }

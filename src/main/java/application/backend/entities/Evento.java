@@ -18,6 +18,7 @@ public class Evento extends BaseEntity {
     private Arquivo arquivo;
     private Integer capacidade;
     private BigDecimal valor;
+    private Integer idEndereco;
 
     public Evento() {
     }
@@ -112,6 +113,14 @@ public class Evento extends BaseEntity {
 
     public void setValor(BigDecimal valor) {
         this.valor = valor;
+    }
+
+    public Integer getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(Integer idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     @Override

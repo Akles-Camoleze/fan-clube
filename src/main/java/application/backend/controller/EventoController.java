@@ -2,14 +2,12 @@ package application.backend.controller;
 
 import application.backend.dto.EventoReportDTO;
 import application.backend.dto.EventoResponseDTO;
+import application.backend.dto.PessoaResponseDTO;
 import application.backend.entities.Evento;
 import application.backend.services.EventoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +31,16 @@ public class EventoController extends Controller<EventoService> {
             dtos.add(modelMapper.map(evento, EventoResponseDTO.class));
         }
         return ResponseEntity.ok(dtos);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<PessoaResponseDTO> register(@RequestBody Evento request) {
+        Evento evento = this.service.save(request);
+        if (evento != null) {
+            PessoaResponseDTO dto = modelMapper.map(evento, PessoaResponseDTO.class);
+            return ResponseEntity.ok(dto);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
     @GetMapping("/subscription-report")
