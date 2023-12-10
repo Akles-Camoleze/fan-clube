@@ -35,9 +35,9 @@ public class UsuarioService extends BaseService<Usuario, UsuarioRepository> {
             usuario.setIdTipoUsuario(COMUM.getId());
             return this.repository.save(usuario);
         });
-        usuario.setPessoa(pessoaService.find(usuario.getIdPessoa()));
+        this.repository.performTransaction(operations);
         usuario.setTipoUsuario(this.tipoUsuarioService.find(usuario.getIdTipoUsuario()));
-        return this.repository.performTransaction(operations);
+        return usuario;
     }
 
     public Usuario update(Usuario usuario) {
