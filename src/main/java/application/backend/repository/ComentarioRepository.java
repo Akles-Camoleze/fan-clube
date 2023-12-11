@@ -6,8 +6,9 @@ import application.backend.entities.Comentario;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComentarioRepository implements BaseRepository<Comentario> {
+public class ComentarioRepository extends BaseRepository<Comentario> {
     public ComentarioRepository() {
+        super("comentarios");
     }
 
     @Override
@@ -31,8 +32,8 @@ public class ComentarioRepository implements BaseRepository<Comentario> {
     }
 
     @Override
-    public void save(Comentario entity) {
-
+    public Comentario save(Comentario entity) {
+        return null;
     }
 
 }

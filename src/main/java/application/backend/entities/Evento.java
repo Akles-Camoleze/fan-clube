@@ -1,21 +1,29 @@
 package application.backend.entities;
 
+import application.backend.dto.EnderecoResponseDTO;
+import application.database.DbException;
+import application.utils.DateParser;
+
 import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Evento extends BaseEntity {
     private String nome;
-    private Date data;
+    private Timestamp data;
     private String descricao;
     private Endereco endereco;
     private Arquivo arquivo;
     private Integer capacidade;
     private BigDecimal valor;
+    private Integer idEndereco;
 
     public Evento() {
     }
 
-    public Evento(String nome, Date data, String descricao, Endereco endereco, Arquivo arquivo, Integer capacidade, BigDecimal valor) {
+    public Evento(String nome, Timestamp data, String descricao, Endereco endereco, Arquivo arquivo, Integer capacidade, BigDecimal valor) {
         this.nome = nome;
         this.data = data;
         this.descricao = descricao;
@@ -25,7 +33,7 @@ public class Evento extends BaseEntity {
         this.valor = valor;
     }
 
-    public Evento(Integer id, String nome, Date data, String descricao, Endereco endereco, Arquivo arquivo, Integer capacidade, BigDecimal valor) {
+    public Evento(Integer id, String nome, Timestamp data, String descricao, Endereco endereco, Arquivo arquivo, Integer capacidade, BigDecimal valor) {
         super(id);
         this.nome = nome;
         this.data = data;
@@ -36,11 +44,26 @@ public class Evento extends BaseEntity {
         this.valor = valor;
     }
 
+    public Evento(ResultSet resultSet) {
+        try {
+            id = resultSet.getInt("env.id");
+            nome = resultSet.getString("env.nome");
+            data = resultSet.getTimestamp("env.data");
+            descricao = resultSet.getString("env.descricao");
+            capacidade = resultSet.getInt("env.capacidade");
+            valor = resultSet.getBigDecimal("env.valor");
+            endereco = new Endereco(resultSet);
+            arquivo = null;
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+    }
+
     public String getNome() {
         return nome;
     }
 
-    public Date getData() {
+    public Timestamp getData() {
         return data;
     }
 
@@ -68,7 +91,7 @@ public class Evento extends BaseEntity {
         this.nome = nome;
     }
 
-    public void setData(Date data) {
+    public void setData(Timestamp data) {
         this.data = data;
     }
 
@@ -90,6 +113,14 @@ public class Evento extends BaseEntity {
 
     public void setValor(BigDecimal valor) {
         this.valor = valor;
+    }
+
+    public Integer getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(Integer idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     @Override

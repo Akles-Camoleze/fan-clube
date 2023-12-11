@@ -1,5 +1,10 @@
 package application.backend.entities;
 
+import application.database.DbException;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Endereco extends BaseEntity {
     private String rua;
     private Integer numero;
@@ -8,6 +13,18 @@ public class Endereco extends BaseEntity {
     private Integer idCidade;
 
     public Endereco() {
+    }
+    
+    public Endereco(ResultSet resultSet) {
+        try {
+            id = resultSet.getInt("end.id");
+            rua = resultSet.getString("end.rua");
+            bairro = resultSet.getString("end.bairro");
+            numero = resultSet.getInt("end.numero");
+            this.cidade = new Cidade(resultSet);
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 
     public Endereco(String rua, Integer numero, String bairro, Cidade cidade) {

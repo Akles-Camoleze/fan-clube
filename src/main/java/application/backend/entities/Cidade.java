@@ -1,10 +1,25 @@
 package application.backend.entities;
 
+import application.database.DbException;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Cidade extends BaseEntity {
     private String nome;
     private String uf;
 
     public Cidade() {
+    }
+
+    public Cidade(ResultSet resultSet) {
+        try {
+            id = resultSet.getInt("cd.id");
+            nome = resultSet.getString("cd.nome");
+            uf = resultSet.getString("cd.uf");
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
 
     public Cidade(String nome, String uf) {
