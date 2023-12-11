@@ -2,14 +2,11 @@ package application.backend.controller;
 
 import application.backend.dto.UsuarioResponseDTO;
 import application.backend.entities.Usuario;
-import application.backend.repository.PessoaRepository;
-import application.backend.repository.TipoUsuarioRepository;
 import application.backend.services.UsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.lang.model.type.NullType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,9 +67,9 @@ public class UsuarioController extends Controller<UsuarioService> {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    @DeleteMapping("/{usuarioId}")
-    public ResponseEntity<Void> delete(@PathVariable Integer usuarioId) {
-        Usuario usuario = this.service.find(usuarioId);
+    @DeleteMapping("/{idUsuario}")
+    public ResponseEntity<Void> delete(@PathVariable Integer idUsuario) {
+        Usuario usuario = this.service.find(idUsuario);
         if (usuario != null) {
             this.service.delete(usuario);
             return ResponseEntity.noContent().build();

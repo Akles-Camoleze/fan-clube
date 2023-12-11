@@ -141,12 +141,12 @@ public class Migration {
                         "  CONSTRAINT `fk_comentario_evento1`" +
                         "    FOREIGN KEY (`idEvento`)" +
                         "    REFERENCES `fan_club`.`evento` (`id`)" +
-                        "    ON DELETE NO ACTION" +
+                        "    ON DELETE CASCADE" +
                         "    ON UPDATE NO ACTION," +
                         "  CONSTRAINT `fk_comentario_usuario1`" +
                         "    FOREIGN KEY (`idUsuario`)" +
                         "    REFERENCES `fan_club`.`usuario` (`id`)" +
-                        "    ON DELETE NO ACTION" +
+                        "    ON DELETE CASCADE" +
                         "    ON UPDATE NO ACTION)" +
                         "ENGINE = InnoDB;";
                 statement.executeUpdate(sql);

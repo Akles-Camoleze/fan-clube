@@ -3,6 +3,7 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/main/java/application/backend/repository/BaseRepository.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/application/backend/repository/CidadeRepository.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/application/backend/repository/ComentarioRepository.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/application/backend/repository/EnderecoRepository.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/application/backend/repository/EventoRepository.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/application/backend/repository/InscricaoRepository.java" dialect="GenericSQL" />
