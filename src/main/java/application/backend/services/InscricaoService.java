@@ -11,6 +11,8 @@ public class InscricaoService extends BaseService<Inscricao, InscricaoRepository
     }
 
     public Inscricao save(Inscricao inscricao) {
+        inscricao.setIdEvento(inscricao.getEvento().getId());
+        inscricao.setIdUsuario(inscricao.getUsuario().getId());
         return this.repository.save(inscricao);
     }
 

@@ -66,7 +66,7 @@ public class InscricaoRepository extends BaseRepository<Inscricao> {
     public Inscricao save(Inscricao entity) {
         return performOperation((connection -> {
             PreparedStatement st = connection.prepareStatement("""
-                            INSERT INTO `fan_club`.`usuario` (idUsuario, idEvento)
+                            INSERT INTO `fan_club`.`inscricao` (idUsuario, idEvento)
                             VALUES (?, ?)""",
                     Statement.RETURN_GENERATED_KEYS
             );
