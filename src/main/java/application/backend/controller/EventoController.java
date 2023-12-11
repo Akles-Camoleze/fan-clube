@@ -8,7 +8,6 @@ import application.backend.services.EventoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +47,16 @@ public class EventoController extends Controller<EventoService> {
         List<EventoReportDTO> dtos = this.service.getSubscriptionReport(year);
         if (!dtos.isEmpty()) {
             return ResponseEntity.ok(dtos);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @DeleteMapping("/{idEvento}")
+    public ResponseEntity<Void> delete(@PathVariable Integer idEvento) {
+        Evento evento = this.service.find(idEvento);
+        if (evento != null) {
+            this.service.delete(evento);
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }

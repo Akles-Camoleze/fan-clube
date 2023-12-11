@@ -18,7 +18,22 @@ public class EventoRepository extends BaseRepository<Evento> {
 
     @Override
     public Evento find(Integer id) {
-        return null;
+        return performOperation(connection -> {
+            PreparedStatement st = connection.prepareStatement("""
+                    SELECT `env`.*, `end`.*, `cd`.*
+                    FROM `fan_club`.`evento` as `env`
+                    JOIN `fan_club`.`endereco` as `end` ON `end`.`id` = `env`.`idEndereco`
+                    JOIN `fan_club`.`cidade` as `cd` ON `cd`.`id` = `end`.`idCidade`
+                    WHERE `env`.`id` = ?;"""
+            );
+            st.setInt(1, id);
+            ResultSet result = st.executeQuery();
+
+            if (result.next()) {
+                return new Evento(result);
+            }
+            return null;
+        });
     }
 
     @Override
