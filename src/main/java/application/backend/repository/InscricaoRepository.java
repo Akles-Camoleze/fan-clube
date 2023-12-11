@@ -34,7 +34,7 @@ public class InscricaoRepository extends BaseRepository<Inscricao> {
             ResultSet result = st.executeQuery();
 
             if (result.next()) {
-                new Inscricao(result);
+                return new Inscricao(result);
             }
 
             return null;

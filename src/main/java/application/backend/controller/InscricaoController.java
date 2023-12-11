@@ -41,9 +41,11 @@ public class InscricaoController extends Controller<InscricaoService> {
 
     @DeleteMapping("/{idInscricao}")
     public ResponseEntity<Void> delete(@PathVariable Integer idInscricao) {
-        Inscricao inscricao = new Inscricao();
-        inscricao.setId(idInscricao);
-        this.service.delete(inscricao);
-        return ResponseEntity.noContent().build();
+        Inscricao inscricao = this.service.find(idInscricao);
+        if (inscricao != null) {
+            this.service.delete(inscricao);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 }
