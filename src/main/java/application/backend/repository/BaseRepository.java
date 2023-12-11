@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -87,6 +88,38 @@ public abstract class BaseRepository<T extends BaseEntity> {
         return lastResult;
     }
 
+    public void performTransaction(ArrayList<Runnable> operations) {
+        Connection connection = DataBase.getConnection();
+        boolean canClose = false;
+        try {
+            if (!transaction.isTransactionOpened()) {
+                transaction.setTransactionOpened(true);
+                connection.setAutoCommit(false);
+                canClose = true;
+            }
+
+            for (Runnable operation : operations) {
+                operation.run();
+            }
+
+            if (canClose) {
+                connection.commit();
+            }
+
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new DbException(e.getMessage());
+            }
+        } finally {
+            if (canClose) {
+                DataBase.closeConnection();
+                transaction.setTransactionOpened(false);
+            }
+        }
+    }
+
     public <K extends DataTransferObject> K runQuery(PreparedStatement st, Class<K> clazz) throws SQLException {
         ResultSet result = st.executeQuery();
         if (result.next()) {
@@ -137,5 +170,8 @@ public abstract class BaseRepository<T extends BaseEntity> {
             st.executeUpdate();
             DataBase.closeStatement(st);
         });
+    }
+
+    public void update(T entity) {
     }
 }

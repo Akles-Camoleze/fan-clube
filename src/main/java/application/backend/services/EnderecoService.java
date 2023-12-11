@@ -12,4 +12,12 @@ public class EnderecoService extends BaseService<Endereco, EnderecoRepository> {
         endereco.setIdCidade(endereco.getCidade().getId());
         return this.repository.save(endereco);
     }
+
+    @Override
+    public Endereco update(Endereco endereco) {
+        endereco.setIdCidade(endereco.getCidade().getId());
+        this.repository.update(endereco);
+        return this.find(endereco.getId());
+    }
+
 }

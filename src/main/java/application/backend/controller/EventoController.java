@@ -1,8 +1,6 @@
 package application.backend.controller;
 
-import application.backend.dto.EventoReportDTO;
-import application.backend.dto.EventoResponseDTO;
-import application.backend.dto.PessoaResponseDTO;
+import application.backend.dto.*;
 import application.backend.entities.Evento;
 import application.backend.services.EventoService;
 import org.springframework.http.HttpStatus;
@@ -57,6 +55,16 @@ public class EventoController extends Controller<EventoService> {
         if (evento != null) {
             this.service.delete(evento);
             return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<EventoResponseDTO> update(@RequestBody Evento request) {
+        Evento evento = this.service.update(request);
+        if (evento != null) {
+            EventoResponseDTO dto = modelMapper.map(evento, EventoResponseDTO.class);
+            return ResponseEntity.ok(dto);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }

@@ -3,6 +3,7 @@ package application.backend.repository;
 import application.backend.dto.DataTransferObject;
 import application.backend.entities.Endereco;
 import application.database.DataBase;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +78,25 @@ public class EnderecoRepository extends BaseRepository<Endereco> {
             DataBase.closeStatement(st);
 
             return null;
+        }));
+    }
+
+    @Override
+    public void update(Endereco entity) {
+        performOperation((connection -> {
+            PreparedStatement st = connection.prepareStatement("""
+                    UPDATE `fan_club`.`endereco`
+                    SET rua = ?, numero = ?, bairro = ?, idCidade = ?
+                    WHERE id = ?"""
+            );
+            st.setString(1, entity.getRua());
+            st.setInt(2, entity.getNumero());
+            st.setString(3, entity.getBairro());
+            st.setInt(4, entity.getIdCidade());
+            st.setInt(5, entity.getId());
+
+            st.executeUpdate();
+            DataBase.closeStatement(st);
         }));
     }
 

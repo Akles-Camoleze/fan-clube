@@ -103,6 +103,7 @@ public class UsuarioRepository extends BaseRepository<Usuario> {
         }));
     }
 
+    @Override
     public void update(Usuario entity) {
         performOperation(connection -> {
             String sql = "UPDATE `fan_club`.`usuario` SET nome = ?, email = ?, idPessoa = ?, idTipoUsuario = ?";

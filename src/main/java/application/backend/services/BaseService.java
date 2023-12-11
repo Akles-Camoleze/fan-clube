@@ -18,4 +18,9 @@ public class BaseService<U extends BaseEntity, T extends BaseRepository<U>> {
     public U find(Integer id) {
         return this.repository.find(id);
     }
+
+    public U update(U entity) {
+        this.repository.update(entity);
+        return this.find(entity.getId());
+    }
 }

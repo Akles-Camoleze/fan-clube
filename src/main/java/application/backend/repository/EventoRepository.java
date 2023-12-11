@@ -123,4 +123,28 @@ public class EventoRepository extends BaseRepository<Evento> {
         }));
     }
 
+    @Override
+    public void update(Evento entity) {
+        performOperation((connection -> {
+            PreparedStatement st = connection.prepareStatement("""
+                    UPDATE `fan_club`.`evento`
+                    SET nome = ?, data = ?, descricao = ?, idEndereco = ?, capacidade = ?, valor = ?
+                    WHERE id = ?"""
+            );
+            st.setString(1, entity.getNome());
+            st.setTimestamp(2, entity.getData());
+            st.setString(3, entity.getDescricao());
+            st.setInt(4, entity.getIdEndereco());
+            st.setInt(5, entity.getCapacidade());
+            st.setBigDecimal(6, entity.getValor());
+            st.setInt(7, entity.getId());
+
+            st.executeUpdate();
+
+            DataBase.closeStatement(st);
+
+            return null;
+        }));
+    }
+
 }

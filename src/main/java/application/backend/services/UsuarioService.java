@@ -40,6 +40,7 @@ public class UsuarioService extends BaseService<Usuario, UsuarioRepository> {
         return usuario;
     }
 
+    @Override
     public Usuario update(Usuario usuario) {
         usuario.setIdPessoa(usuario.getPessoa().getId());
         usuario.setIdTipoUsuario(usuario.getTipoUsuario().getId());

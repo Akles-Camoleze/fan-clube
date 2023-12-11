@@ -34,4 +34,14 @@ public class EventoService extends BaseService<Evento, EventoRepository> {
         });
         return this.repository.performTransaction(operations);
     }
+
+    @Override
+    public Evento update(Evento evento) {
+        evento.setIdEndereco(evento.getEndereco().getId());
+        ArrayList<Runnable> operations = new ArrayList<>();
+        operations.add(() -> this.enderecoService.update(evento.getEndereco()));
+        operations.add(() -> this.repository.update(evento));
+        this.repository.performTransaction(operations);
+        return find(evento.getId());
+    }
 }
