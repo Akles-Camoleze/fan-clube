@@ -2,17 +2,14 @@ package application.backend.repository;
 
 import application.backend.dto.DataTransferObject;
 import application.backend.entities.BaseEntity;
-import application.backend.entities.Inscricao;
 import application.database.DataBase;
 import application.database.DbException;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -25,19 +22,19 @@ public abstract class BaseRepository<T extends BaseEntity> {
         this.tableName = tableName;
     }
 
-    abstract T find(Integer id);
+    public abstract T find(Integer id);
 
-    abstract <K extends DataTransferObject> K find(Integer id, Class<K> clazz);
+    public abstract <K extends DataTransferObject> K find(Integer id, Class<K> clazz);
 
-    abstract <K extends DataTransferObject> List<K> findAll(Class<K> clazz);
+    public abstract <K extends DataTransferObject> List<K> findAll(Class<K> clazz);
 
-    abstract List<T> findAll();
+    public abstract List<T> findAll();
 
     public T save(Connection connection, T entity) throws SQLException {
         return null;
     }
 
-    abstract T save(T entity);
+    public abstract T save(T entity);
 
     public <K> K performOperation(Perform<K> operation) {
         try {

@@ -2,11 +2,7 @@ package application.backend.services;
 
 import application.backend.entities.BaseEntity;
 import application.backend.entities.Usuario;
-import application.backend.repository.Perform;
-import application.backend.repository.PessoaRepository;
-import application.backend.repository.TipoUsuarioRepository;
 import application.backend.repository.UsuarioRepository;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -55,6 +51,7 @@ public class UsuarioService extends BaseService<Usuario, UsuarioRepository> {
         return this.repository.findAll();
     }
 
+    @Override
     public void delete(Usuario usuario) {
         List<Supplier<? extends BaseEntity>> operations = new ArrayList<>();
         operations.add(() -> {
@@ -66,10 +63,6 @@ public class UsuarioService extends BaseService<Usuario, UsuarioRepository> {
             return null;
         });
         this.repository.performTransaction(operations);
-    }
-
-    public Usuario find(Integer id) {
-        return this.repository.find(id);
     }
 
 }

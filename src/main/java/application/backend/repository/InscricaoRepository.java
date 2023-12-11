@@ -16,7 +16,29 @@ public class InscricaoRepository extends BaseRepository<Inscricao> {
 
     @Override
     public Inscricao find(Integer id) {
-        return null;
+        return performOperation(connection -> {
+            PreparedStatement st = connection.prepareStatement("""
+                    SELECT `ins`.*, `usr`.*, `env`.*, `ps`.*, `end`.*, `cd`.*, `tp`.*
+                       FROM `fan_club`.`inscricao` as `ins`
+                       JOIN `fan_club`.`usuario` as `usr` ON `usr`.`id` = `ins`.`idUsuario`
+                       JOIN `fan_club`.`tipoUsuario` as `tp` ON `tp`.`id` = `usr`.`idTipoUsuario`
+                       JOIN `fan_club`.`evento` as `env` ON `env`.`id` = `ins`.`idEvento`
+                       JOIN `fan_club`.`pessoa` as `ps` ON `ps`.`id` = `usr`.`idPessoa`
+                       JOIN `fan_club`.`endereco` as `end` ON `end`.`id` = `ps`.`idEndereco`
+                       JOIN `fan_club`.`cidade` as `cd` ON `cd`.`id` = `end`.`idCidade`
+                       WHERE `ins`.`id` = ?;
+                    """
+            );
+            st.setInt(1, id);
+
+            ResultSet result = st.executeQuery();
+
+            if (result.next()) {
+                new Inscricao(result);
+            }
+
+            return null;
+        });
     }
 
     @Override

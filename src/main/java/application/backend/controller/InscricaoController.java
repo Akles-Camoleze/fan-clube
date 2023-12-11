@@ -27,7 +27,7 @@ public class InscricaoController extends Controller<InscricaoService> {
     }
 
     @GetMapping("/all/{idUsuario}")
-    public ResponseEntity<List<InscricaoResponseDTO>> findAll(@PathVariable Integer idUsuario) {
+    public ResponseEntity<List<InscricaoResponseDTO>> findAllByUsuario(@PathVariable Integer idUsuario) {
         List<Inscricao> inscricoes = this.service.findAllByUsuario(idUsuario);
         if (inscricoes.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -37,5 +37,13 @@ public class InscricaoController extends Controller<InscricaoService> {
             dtos.add(modelMapper.map(inscricao, InscricaoResponseDTO.class));
         }
         return ResponseEntity.ok(dtos);
+    }
+
+    @DeleteMapping("/{idInscricao}")
+    public ResponseEntity<Void> delete(@PathVariable Integer idInscricao) {
+        Inscricao inscricao = new Inscricao();
+        inscricao.setId(idInscricao);
+        this.service.delete(inscricao);
+        return ResponseEntity.noContent().build();
     }
 }
