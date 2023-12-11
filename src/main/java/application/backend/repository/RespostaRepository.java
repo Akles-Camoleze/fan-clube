@@ -8,6 +8,7 @@ import java.util.List;
 
 public class RespostaRepository extends BaseRepository<Resposta> {
     public RespostaRepository() {
+        super("resposta");
     }
 
     @Override

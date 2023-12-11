@@ -1,7 +1,6 @@
 package application.backend.repository;
 
 import application.backend.dto.DataTransferObject;
-import application.backend.entities.Endereco;
 import application.backend.entities.TipoUsuario;
 import application.database.DataBase;
 
@@ -13,6 +12,7 @@ import java.util.List;
 public class TipoUsuarioRepository extends BaseRepository<TipoUsuario> {
 
     public TipoUsuarioRepository() {
+        super("tipoUsuario");
     }
 
     @Override

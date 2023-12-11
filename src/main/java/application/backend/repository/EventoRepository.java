@@ -13,6 +13,7 @@ import java.util.List;
 
 public class EventoRepository extends BaseRepository<Evento> {
     public EventoRepository() {
+        super("evento");
     }
 
     @Override

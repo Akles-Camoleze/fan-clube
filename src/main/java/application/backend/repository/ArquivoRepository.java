@@ -2,12 +2,13 @@ package application.backend.repository;
 
 import application.backend.dto.DataTransferObject;
 import application.backend.entities.Arquivo;
-import java.sql.Connection;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArquivoRepository extends BaseRepository<Arquivo> {
     public ArquivoRepository() {
+        super("arquivo");
     }
 
     @Override

@@ -10,6 +10,7 @@ import java.util.List;
 
 public class UsuarioRepository extends BaseRepository<Usuario> {
     public UsuarioRepository() {
+        super("usuario");
     }
 
     @Override
@@ -124,16 +125,6 @@ public class UsuarioRepository extends BaseRepository<Usuario> {
                 st.setInt(5, entity.getId());
             }
 
-            st.executeUpdate();
-            DataBase.closeStatement(st);
-        });
-    }
-
-    public void delete(Usuario entity) {
-        performOperation(connection -> {
-            String sql = "DELETE FROM `fan_club`.`usuario` WHERE id = ?";
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, entity.getId());
             st.executeUpdate();
             DataBase.closeStatement(st);
         });

@@ -2,6 +2,7 @@ package application.backend.repository;
 
 import application.backend.dto.DataTransferObject;
 import application.backend.entities.BaseEntity;
+import application.backend.entities.Inscricao;
 import application.database.DataBase;
 import application.database.DbException;
 
@@ -13,11 +14,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public abstract class BaseRepository<T> {
+public abstract class BaseRepository<T extends BaseEntity> {
     static final Transaction transaction = new Transaction();
+
+    protected final String tableName;
+
+    protected BaseRepository(String tableName) {
+        this.tableName = tableName;
+    }
 
     abstract T find(Integer id);
 
@@ -124,5 +130,15 @@ public abstract class BaseRepository<T> {
                 DataBase.closeConnection();
             }
         }
+    }
+
+    public void delete(T entity) {
+        performOperation(connection -> {
+            String sql = "DELETE FROM `fan_club`." + tableName + " WHERE id = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, entity.getId());
+            st.executeUpdate();
+            DataBase.closeStatement(st);
+        });
     }
 }

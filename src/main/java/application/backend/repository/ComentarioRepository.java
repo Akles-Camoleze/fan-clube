@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ComentarioRepository extends BaseRepository<Comentario> {
     public ComentarioRepository() {
+        super("comentarios");
     }
 
     @Override

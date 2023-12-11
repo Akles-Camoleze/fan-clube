@@ -1,10 +1,8 @@
 package application.backend.repository;
 
 import application.backend.dto.DataTransferObject;
-import application.backend.entities.Evento;
 import application.backend.entities.Inscricao;
 import application.database.DataBase;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -13,6 +11,7 @@ import java.util.List;
 
 public class InscricaoRepository extends BaseRepository<Inscricao> {
     public InscricaoRepository() {
+        super("inscricao");
     }
 
     @Override

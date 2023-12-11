@@ -10,6 +10,7 @@ import java.util.List;
 
 public class PessoaRepository extends BaseRepository<Pessoa> {
     public PessoaRepository() {
+        super("pessoa");
     }
 
     @Override
@@ -103,16 +104,6 @@ public class PessoaRepository extends BaseRepository<Pessoa> {
             DataBase.closeStatement(st);
 
             return null;
-        });
-    }
-
-    public void delete(Pessoa entity) {
-        performOperation(connection -> {
-            String sql = "DELETE FROM `fan_club`.`pessoa` WHERE id = ?";
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, entity.getId());
-            st.executeUpdate();
-            DataBase.closeStatement(st);
         });
     }
 

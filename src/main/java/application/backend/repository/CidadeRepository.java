@@ -12,6 +12,7 @@ import java.util.List;
 
 public class CidadeRepository extends BaseRepository<Cidade> {
     public CidadeRepository() {
+        super("cidade");
     }
 
     @Override
